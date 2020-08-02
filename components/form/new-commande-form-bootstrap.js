@@ -46,60 +46,71 @@ export const NewCommandeFormBootstrap = props => {
     })
 
     return(
-        <Formik
-            initialValues={formNames}
-            onSubmit={values => console.log(values)}
-            validationSchema={Yup.object(validationSchema)}
-        >
+        <>
 
-            {({handleChange, handleBlur, handleSubmit, values, errors}) => (
-                <>
-                    <View style={styles.container}>
-                        <View style={{...styles.tabCell, ...{flexGrow: 3}}}>
-                            <Text>Image</Text>
-                            { billets.map(element=> {
-                                return(
-                                    <View key={element.image} style={{...styles.content, ...{margin: 10}}}>
-                                        <Image
-                                            resizeMode={"contain"}
-                                            style={{width: '100%', height: 100}}
-                                            source={element.image}
+            <Formik
+                initialValues={formNames}
+                onSubmit={values => console.log(values)}
+                validationSchema={Yup.object(validationSchema)}
+            >
+
+                {({handleChange, handleBlur, handleSubmit, values, errors}) => (
+                    <>
+                        <View style={styles.container}>
+                            <View style={{...styles.tabCell, ...{flexGrow: 3}}}>
+                                <Text>Image</Text>
+                                { billets.map(element=> {
+                                    return(
+                                        <View key={element.image} style={{...styles.content, ...{margin: 10}}}>
+                                            <Image
+                                                resizeMode={"contain"}
+                                                style={{width: '100%', height: 100}}
+                                                source={element.image}
+                                            />
+                                        </View>
+                                    )
+                                })  }
+
+                            </View>
+                            <View style={styles.tabCell}>
+                                <Text>Quantité</Text>
+                                { Object.entries(formNames).map(element=>(
+                                    <View style={styles.content}>
+                                        <RopiTextInput
+                                            name={element[0]}
                                         />
                                     </View>
-                                )
-                            })  }
+                                ))}
+                            </View>
+                            <View style={styles.tabCell}>
+                                <Text>Prix</Text>
+                                {billets.map(element=>(
+                                    <View key={element.value} style={styles.content}>
+                                        <Text>{element.value} €</Text>
+                                    </View>
+                                ))}
+                            </View>
+                            <View style={styles.tabCell}>
+                                <Text>Total</Text>
+                                {billets.map(element=>(
+                                    <View style={styles.content}>
+                                        <Text>{!isNaN(values[element.name]) && !errors[element.name] ? values[element.name] * element.value : 0} €</Text>
+                                    </View>
+                                ))}
+                            </View>
+                        </View>
 
-                        </View>
-                        <View style={styles.tabCell}>
-                            <Text>Quantité</Text>
-                            { Object.entries(formNames).map(element=>(
-                                <View style={styles.content}>
-                                    <RopiTextInput
-                                        name={element[0]}
-                                    />
-                                </View>
-                            ))}
-                        </View>
-                        <View style={styles.tabCell}>
-                            <Text>Prix</Text>
-                            {billets.map(element=>(
-                                <View key={element.value} style={styles.content}>
-                                    <Text>{element.value} €</Text>
-                                </View>
-                            ))}
-                        </View>
-                        <View style={styles.tabCell}>
-                            <Text>Total</Text>
-                            {billets.map(element=>(
-                                <View style={styles.content}>
-                                    <Text>{!isNaN(values[element.name]) && !errors[element.name] ? values[element.name] * element.value : 0} €</Text>
-                                </View>
-                            ))}
-                        </View>
-                    </View>
-                </>
-            )}
+                    </>
+                )}
 
-        </Formik>
+            </Formik>
+
+            {props.adresses &&
+            props.adresses.map(adresse=>(
+                <Text>{adresse.rue}, {adresse.numero} à {adresse.ville.code_postal} {adresse.ville.ville} ({adresse.ville.pays.nom})</Text>
+            ))
+            }
+        </>
     )
 };
+
