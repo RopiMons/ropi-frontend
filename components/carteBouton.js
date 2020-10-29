@@ -57,14 +57,14 @@ export function CarteBoutonArray4({children, props}) {
         <>
             {/*<h1>ESSai</h1>*/}
 
-            <div className="container" id="actions">
-                <div className="row d-flex flex-row">
+            <div className="container row d-flex flex-row" id="actions">
 
                         {boutonTitleArray.map((boutonTexte, key) => {
                             return (
                                 <>
                                         <CarteBouton texte={boutonTexte}
                                                      icone={boutonIconArray[key]}
+                                                     key={key}
                                                      boutonText={boutonTextArray[key]}
                                                      boutonColor={boutonColorArray[key]} >
                                             {/*Je suis le children*/}
@@ -74,7 +74,6 @@ export function CarteBoutonArray4({children, props}) {
                             );
                         })}
 
-                </div>
             </div>
             {/*<CarteBouton texte={"Je suis une fantôme"}>
                 Je suis le children
