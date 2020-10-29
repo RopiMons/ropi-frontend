@@ -115,6 +115,7 @@
   display: inline-block;
   color: #ffffff;
   vertical-align: middle;
+  text-align: left;
 }
 
 .footerContactsPA {
@@ -132,6 +133,7 @@
   text-align: center;
   line-height: 38px;
   margin: 10px 15px 10px 0;
+  vertical-align: middle;
 }
 
 .spanNewLineSpan {

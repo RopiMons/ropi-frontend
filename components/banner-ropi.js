@@ -3,6 +3,10 @@ import React from "react";
 import  {Row, Container, Col, Table, Navbar, Nav} from "react-bootstrap";
 import styles from './ropi_base.module.css'
 
+/* **********************************************************
+    Le banner du Ropi, à afficher en haut de chaque page
+********************************************************** */
+
 export default function BannerRopi({children, props}){
     return(
 

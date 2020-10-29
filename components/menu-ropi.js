@@ -2,6 +2,10 @@ import {Container, Nav, Navbar} from "react-bootstrap";
 import React from "react";
 import styles from './ropi_base.module.css'
 
+/* **********************************************************
+    Le menu de navigation du Ropi, à afficher en dessous du banner de chaque page
+********************************************************** */
+
 export default function MenuRopi({children, props}) {
     return (
 

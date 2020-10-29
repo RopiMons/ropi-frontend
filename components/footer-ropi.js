@@ -3,6 +3,10 @@ import React from "react";
 import  {Row, Container, Col, Table, Navbar, Nav} from "react-bootstrap";
 import styles from './ropi_base.module.css'
 
+/* **********************************************************
+    Le footer du Ropi, à afficher en bas de chaque page
+********************************************************** */
+
 export default function FooterRopi({children, props}){
     return(
 
@@ -23,12 +27,15 @@ export default function FooterRopi({children, props}){
                         </Col>
                         <Col sm={6} md={4}>
                             <div>
-                                <span className={"fa fa-map-marker " + styles.footerContactsIcon} />
-                                <p style={{width: '135px', fontSize: '14px'}} className={styles.footerContactsP}>
+                                <span className={"fa fa-map-marker " + styles.footerContactsIcon}/>
+
+                                <p style={{width: '135px', fontSize: '14px'}}
+                                   className={styles.footerContactsP}>
                                     <span className={styles.spanNewLineSpan}>24 rue de Ghlin</span>
-                                    7012 Mons, Belgique
+                                    <span className={styles.spanNewLineSpan}>7012 Mons, Belgique</span>
                                 </p>
                             </div>
+
                             <div>
                                 <i className={"fa fa-phone " + styles.footerContactsIcon} />
                                 <p className={"text-left " + styles.footerContactsP} style={{width: '144px',fontSize: '14px'}} >+32 (0)65 / 680.214</p>
@@ -41,7 +48,7 @@ export default function FooterRopi({children, props}){
                         <div className="clearfix" />
                         <Col md={4}>
                             <h4 className={styles.footerAboutH4}>Au sujet du Ropi</h4>
-                            <p style={{fontSize: '16px'}} className={styles.footerAboutP}> Le Ropi est la monnaie citoyenne montoise !</p>
+                            <p style={{fontSize: '16px'}} className={styles.footerAboutP}> Le Ropi est la monnaie citoyenne montoise!</p>
                             <div className={"social-icons " + styles.divSocialLinks}>
                                 <a href="https://www.facebook.com/RopiAsbl/" className={styles.socialLinksA}><i className="fab fa-facebook-f" /></a>
                                 <a href="https://github.com/RopiMons" className={styles.socialLinksA}><i className="fab fa-github" /></a>
