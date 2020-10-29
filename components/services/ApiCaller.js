@@ -2,10 +2,10 @@ import fetch from "node-fetch";
 import https from "https";
 const prod = process.env.NODE_ENV === 'production';
 
-const BASE_API = 'https://localhost:51597';
+const BASE_API = 'https://127.0.0.1:8000/api';
 
-const LOGIN_CHECK = '/users/login_check';
-const MY_ADRESSES= '/commandes/my/adresses';
+const PAGE = '/page/{idPage}';
+
 
 
 const httpsAgent = new https.Agent({
@@ -14,13 +14,8 @@ const httpsAgent = new https.Agent({
 
 export default class ApiCaller {
 
-
-    static async getToken(username, password){
-        return this.getJSON(LOGIN_CHECK, null,'POST', JSON.stringify({username: username, password: password}));
-    }
-
-    static async getMyAdresses(token){
-        return this.getJSON(MY_ADRESSES, token);
+    static async getPage(idPage){
+        return this.getJSON(PAGE.replace("{idPage}",idPage));
     }
 
     static getRequestOptions(method = 'get', token = null) {
@@ -52,6 +47,7 @@ export default class ApiCaller {
         return new Promise(function (resolve, reject) {
             fetch(BASE_API+endPoint, requestOptions).then(
                 (response) => {
+                    console.log(response);
                     response.json().then(
                         (json) => {
                             resolve({ status: response.status, json: json });
