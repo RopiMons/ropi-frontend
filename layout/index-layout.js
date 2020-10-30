@@ -8,7 +8,7 @@ export default function IndexLayout({children, props}){
         <>
             <Head>
                 <title>Le Ropi à Mons</title>
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
             </Head>
             <body>
             <Container>
