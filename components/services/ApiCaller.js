@@ -4,7 +4,7 @@ const prod = process.env.NODE_ENV === 'production';
 
 const BASE_API = 'https://127.0.0.1:8000/api';
 
-const PAGE = '/page/{idPage}';
+const PAGE = '/page/{slug}';
 
 
 
@@ -14,8 +14,8 @@ const httpsAgent = new https.Agent({
 
 export default class ApiCaller {
 
-    static async getPage(idPage){
-        return this.getJSON(PAGE.replace("{idPage}",idPage));
+    static async getPage(slug){
+        return this.getJSON(PAGE.replace("{slug}",slug));
     }
 
     static getRequestOptions(method = 'get', token = null) {

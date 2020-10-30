@@ -10,7 +10,7 @@ export async function getStaticProps({params}) {
 
     let status, isOk, data = null;
 
-    await ApiCaller.getPage(params.idPage).then(json => {
+    await ApiCaller.getPage(params.slug).then(json => {
             status = json.status;
             isOk = 200 === json.status;
             if(isOk){
@@ -33,8 +33,8 @@ export async function getStaticProps({params}) {
 export async function getStaticPaths() {
     return {
         paths: [
-            {params: {idPage: '2'}},
-            {params: {idPage: '3'}}
+            {params: {slug: 'ecouler-ses-ropis'}},
+            {params: {slug: 'le-ropi-mode-demploi'}}
         ],
         fallback: true
     }
