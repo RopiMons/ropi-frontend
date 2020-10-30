@@ -17,13 +17,25 @@ Création de 4 boutons Jumbotron en ligne, bootstrapés
 
 
 export default function CarteBouton(props) {
+
+    const divStyle = {
+        color: props.boutonTextColor,
+        backgroundImage: props.boutonImage,
+        backgroundColor: props.boutonColor,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundBlendMode: 'multiply',
+        //backgroundBlendMode: 'hard-light'
+    };
+
     return (
 
         <div className="col-6 col-md-4 col-lg-3 d-flex  align-self-stretch" >
 
             <Jumbotron className={"d-flex flex-column flex-grow-1 justify-content-between"
             +" align-items-stretch align-content-stretch align-self-stretch flex-wrap" }
-                       style={{background: props.boutonColor}} >
+                       style={divStyle}  >
 
                 {/*<MDBIcon className={"text-center"} icon="store"/>*/}
                 <MDBIcon className={"text-center"} icon={props.icone} size="4x"/>
@@ -57,7 +69,9 @@ export function CarteBoutonArray4(props) {
                                                      icone={props.boutonIconArray[key]}
                                                      key={key}
                                                      boutonText={props.boutonTextArray[key]}
-                                                     boutonColor={props.boutonColorArray[key]} >
+                                                     boutonTextColor={props.boutonTextColorArray[key]}
+                                                     boutonColor={props.boutonColorArray[key]}
+                                                     boutonImage={props.boutonImageArray[key]}>
                                             {/*Je suis le children*/}
                                             {props.boutonContentArray[key]}
                                         </CarteBouton>

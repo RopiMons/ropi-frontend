@@ -23,7 +23,10 @@ export default function AccueilRopi(props){
         'Devenir un commerce partenaire et bénéficier des avantages du réseau ',
         'Participer à l\'évolution et devenir membre de l\'asbl Ropi.'];
     const ActionTextArray = ["Ropi banking", "Rechercher", "Adhérer", "Aider"];
+    const ActionTextColorArray = ["black", "black", "black", "black"];
     const ActionColorArray = ["#ffa7a4", "#fed18d", "#abb4f0", "#93e6da"];
+    const ActionImageArray = ["","","","",""];
+
 
     return(
         <>
@@ -51,7 +54,9 @@ export default function AccueilRopi(props){
                      boutonTitleArray={ActionTitleArray}
                      boutonContentArray={ActionContentArray}
                      boutonTextArray={ActionTextArray}
-                     boutonColorArray={ActionColorArray}>
+                     boutonTextColorArray={ActionTextColorArray}
+                     boutonColorArray={ActionColorArray}
+                     boutonImageArray={ActionImageArray}>
                  </CarteBoutonArray4>
 
 

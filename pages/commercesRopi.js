@@ -18,7 +18,7 @@ export default function CommerceRopi(props){
     /* Construction de la liste des commerçants
      *  A lier à la base de donnée TODO LOLO
      *  */
-    const commerceIconArray = ["images/commercesLogo/logo1.jpg", "store","user-circle","users"
+    const commerceIconArray = ["store", "store","user-circle","users"
         , "store", "store", "store", "store", "store", "store"];
     const commerceTitleArray = ['Les Halles', 'Les Jeunesses', 'Les fondus', 'Les Ropieux'
         , 'autre commerce', 'autre commerce', 'autre commerce', 'autre commerce', 'autre commerce', 'autre commerce'];
@@ -29,8 +29,16 @@ export default function CommerceRopi(props){
         'Imprime ton fric',
         'Consomme', 'Consomme','Consomme', 'Consomme','Consomme', 'Consomme'];
     const commerceTextArray = ["todo", "todo", "todo3", "todo4", "todo5", "todo5", "todo5", "todo5", "todo5", "todo5"];
-    const commerceColorArray = ["#ffa7a4", "#fed18d", "#abb4f0", "#93e6da", "#ffa7a4", "#fed18d", "#abb4f0", "#93e6da", "#ffa7a4", "#fed18d", "#abb4f0", "#93e6da"];
-
+    const commerceTextColorArray = ["white", "white", "white", "white", "white", "white", "white", "white", "white", "white"];
+    const commerceColorArray = ["#9b9b9b", "#9b9b9b", "#9b9b9b", "#9b9b9b", "#9b9b9b", "#9b9b9b", "#9b9b9b", "#9b9b9b", "#ffe0e0", "#ffe8c1", "#dfe4ff", "#dafff8"];
+    const commerceImageArray = ["url(https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg)",
+        "url(https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg)",
+        "url(https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg)",
+        "url(https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg)",
+        "url(https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg)",
+        "url(https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg)",
+        "url(https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg)",
+        "url(https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg)"];
 
     return(
         <>
@@ -59,10 +67,12 @@ export default function CommerceRopi(props){
                     boutonTitleArray={commerceTitleArray}
                     boutonContentArray={commerceContentArray}
                     boutonTextArray={commerceTextArray}
-                    boutonColorArray={commerceColorArray}>
+                    boutonTextColorArray={commerceTextColorArray}
+                    boutonColorArray={commerceColorArray}
+                    boutonImageArray={commerceImageArray}>
                 </CarteBoutonArray4>
 
-
+                {/*boutonBackgroundImage="images/commercesLogo/fondsPetitMarais.jpg"*/}
 
 
 
