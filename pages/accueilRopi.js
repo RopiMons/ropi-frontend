@@ -8,11 +8,22 @@ import BannerRopi from "../components/banner-ropi";
 import MenuRopi from "../components/menu-ropi";
 import FooterRopi from "../components/footer-ropi";
 import BlogRopi from "../components/blog-ropi.js";
+import Carte2Col from "../components/carte2Col";
 
 import CarteBouton, {CarteBoutonArray4} from "../components/carteBouton";
 
 
 export default function AccueilRopi(props){
+
+    const ActionIconArray = ["university", "store","user-circle","users"];
+    const ActionTitleArray = ['Obtenir des Ropi', 'Dépenser ses Ropi', 'Devenir partenaire', 'Devenir bénévole'];
+    const ActionContentArray = [
+        'Commander des billets de Ropi ou accéder à mon portefeuille de Ropi électroniques',
+        'Chercher les commerces prestataires du Ropi',
+        'Devenir un commerce partenaire et bénéficier des avantages du réseau ',
+        'Participer à l\'évolution et devenir membre de l\'asbl Ropi.'];
+    const ActionTextArray = ["Ropi banking", "Rechercher", "Adhérer", "Aider"];
+    const ActionColorArray = ["#ffa7a4", "#fed18d", "#abb4f0", "#93e6da"];
 
     return(
         <>
@@ -27,72 +38,38 @@ export default function AccueilRopi(props){
 
                 <MenuRopi>  </MenuRopi>
 
-                <div className="container py-5" id="passez-action">
-                    <h3 className="text-center my-3">Le Ropi en pratique</h3>
-                    <h6 className="text-center subtitle font-weight-normal">Le Ropi n&#39;attend que vous pour
-                        relocaliser l&#39;économie. Il existe plein de façons de participer !</h6>
+                {/* Passer à l'action*/}
+                <div className="container py-xl-5" id="passez-action">
+                    <h2 className="text-center my-3">Le Ropi en pratique</h2>
+                    <h4 className="text-center subtitle font-weight-normal">Le Ropi n&#39;attend que vous pour
+                        relocaliser l&#39;économie. Il existe plein de façons de participer !</h4>
                 </div>
 
-                {/*Boutons pour passer à l'action*/}
-                 <CarteBoutonArray4> </CarteBoutonArray4>
 
-                <div className="container py-5" id="quoi">
-                    <h3 className="text-center my-3">A propos du Ropi</h3>
-                    <h6 className="text-center subtitle font-weight-normal">Vous avez entendu parler du Ropi mais vous
+                 <CarteBoutonArray4
+                     boutonIconArray={ActionIconArray}
+                     boutonTitleArray={ActionTitleArray}
+                     boutonContentArray={ActionContentArray}
+                     boutonTextArray={ActionTextArray}
+                     boutonColorArray={ActionColorArray}>
+                 </CarteBoutonArray4>
+
+
+                {/* Information générale.*/}
+                <div className="container py-xl-5" id="quoi">
+                    <h2 className="text-center my-3">A propos du Ropi</h2>
+                    <h4 className="text-center subtitle font-weight-normal">Vous avez entendu parler du Ropi mais vous
                         vous demandez ce qui nous anime et à quoi cela peut-il bien servir ? Découvrez le en texte,
-                        schéma interactif et video ci-dessous!</h6>
+                        schéma interactif et video ci-dessous!</h4>
                 </div>
 
 
-                {/*Information générale. TODO FACTORISER */}
-                <div className="container" id="core">
-                    <div className="row d-md-flex align-items-stretch align-items-md-end">
-
-                        <div className="col-md-4 d-md-flex align-self-stretch align-items-md-end">
-                            <div className="jumbotron d-flex flex-column flex-grow-1 justify-content-between justify-content-around align-self-stretch" id="valeurs">
-                                <h5>Nos valeurs pour une transition écologique et sociale <br/><br/></h5>
-
-
-                                <img className="img-fluid" id="valeurs" src="images/valeurs_alpha.png"/>
-
-                                <p className="align-self-center">
-                                    <a className="btn btn-primary" role="button">En savoir plus</a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="col-md-8 d-md-flex align-self-stretch align-items-md-end">
-                            <div className="jumbotron d-flex flex-column flex-grow-1 justify-content-between align-content-around align-self-stretch"
-                                id="pourquoi">
-                                <h5>Pourquoi une monnaie complémentaire à Mons ? Comment ça marche ?</h5>
-
-
-                                <div className="row">
-                                    <div className="col-lg-5">
-                                        <img className="img-fluid" id="carte-interactive"
-                                             src="images/illu_ropi.png"/>
-                                    </div>
-                                    <div className="col text-center d-none d-lg-inline align-self-center">
-                                        <iframe allowFullScreen frameBorder="0"
-                                                src="https://www.youtube.com/embed/7-s_wIoMC9I"
-                                                className="justify-content-start" id="video-mc"></iframe>
-                                    </div>
-                                </div>
-
-
-                                <p className="align-self-center">
-                                    <a className="btn btn-primary flex-column" role="button">En savoir plus</a>
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                <Carte2Col> </Carte2Col>
 
 
                 <BlogRopi> </BlogRopi>
 
-                <FooterRopi>  </FooterRopi>
+                <FooterRopi> </FooterRopi>
 
             </Container>
             </body>

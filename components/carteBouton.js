@@ -19,7 +19,7 @@ Création de 4 boutons Jumbotron en ligne, bootstrapés
 export default function CarteBouton(props) {
     return (
 
-        <div className="col-6 col-md-3 d-flex  align-self-stretch" >
+        <div className="col-6 col-md-4 col-lg-3 d-flex  align-self-stretch" >
 
             <Jumbotron className={"d-flex flex-column flex-grow-1 justify-content-between"
             +" align-items-stretch align-content-stretch align-self-stretch flex-wrap" }
@@ -27,6 +27,7 @@ export default function CarteBouton(props) {
 
                 {/*<MDBIcon className={"text-center"} icon="store"/>*/}
                 <MDBIcon className={"text-center"} icon={props.icone} size="4x"/>
+                <p></p>
                 <h4 className="text-center">{props.texte}</h4>
 
                 <p className="text-center">{props.children}</p>
@@ -41,34 +42,24 @@ export default function CarteBouton(props) {
     )
 }
 
-export function CarteBoutonArray4({children, props}) {
-    const boutonIconArray = ["university", "store","user-circle","users"];
-    const boutonTitleArray = ['Obtenir des Ropi', 'Dépenser ses Ropi', 'Devenir partenaire', 'Devenir bénévole'];
-    const boutonContentArray = [
-        'Commander des billets de Ropi ou accéder à mon portefeuille de Ropi électroniques',
-        'Chercher les commerces prestataires du Ropi',
-        'Devenir un commerce partenaire et bénéficier des avantages du réseau ',
-        'Participer à l\'évolution et devenir membre de l\'asbl Ropi.'];
-    const boutonTextArray = ["Ropi banking", "Rechercher", "Adhérer", "Aider"];
-    const boutonColorArray = ["#ffa7a4", "#fed18d", "#abb4f0", "#93e6da"];
+export function CarteBoutonArray4(props) {
 
-
-    return (
+   return (
         <>
             {/*<h1>ESSai</h1>*/}
 
             <div className="container row d-flex flex-row" id="actions">
 
-                        {boutonTitleArray.map((boutonTexte, key) => {
+                        {props.boutonTitleArray.map((boutonTexte, key) => {
                             return (
                                 <>
                                         <CarteBouton texte={boutonTexte}
-                                                     icone={boutonIconArray[key]}
+                                                     icone={props.boutonIconArray[key]}
                                                      key={key}
-                                                     boutonText={boutonTextArray[key]}
-                                                     boutonColor={boutonColorArray[key]} >
+                                                     boutonText={props.boutonTextArray[key]}
+                                                     boutonColor={props.boutonColorArray[key]} >
                                             {/*Je suis le children*/}
-                                            {boutonContentArray[key]}
+                                            {props.boutonContentArray[key]}
                                         </CarteBouton>
                                 </>
                             );

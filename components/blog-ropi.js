@@ -55,13 +55,14 @@ export default function BlogRopi(props) {
     return (
 
         <div className="col-md-12">
-            <div className="blog-home3 py-5">
+            <div className="blog-home3 py-xl-5">
                 <div className="container">
-                    <div className="row justify-content-center">
+
+                    <div className="row py-5 justify-content-center">
                         <div className="col-md-8 text-center">
-                            <h3 className="my-3">Des nouvelles du Ropi et des prestataires</h3>
-                            <h6 className="subtitle font-weight-normal">Les actualités de l&#39;asbl Ropi et de ses
-                                prestataires partenaires</h6>
+                            <h2 className="my-3">Des nouvelles du Ropi et des prestataires</h2>
+                            <h4 className="subtitle font-weight-normal">Les actualités de l&#39;asbl Ropi et de ses
+                                prestataires partenaires</h4>
                         </div>
                     </div>
 
