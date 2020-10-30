@@ -5,6 +5,7 @@ const prod = process.env.NODE_ENV === 'production';
 const BASE_API = 'https://127.0.0.1:8000/api';
 
 const PAGE = '/page/{slug}';
+const MENU = '/menu';
 
 
 
@@ -16,6 +17,10 @@ export default class ApiCaller {
 
     static async getPage(slug){
         return this.getJSON(PAGE.replace("{slug}",slug));
+    }
+
+    static async getMenu(){
+        return this.getJSON(MENU);
     }
 
     static getRequestOptions(method = 'get', token = null) {

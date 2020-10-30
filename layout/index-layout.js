@@ -1,9 +1,9 @@
 import Head from "next/head";;
 import React from "react";
-import  {Row, Container, Col, Table, Navbar, Nav} from "react-bootstrap";
+import  {Row, Container, Col, Table} from "react-bootstrap";
 import styles from './css/index-layout.module.css';
-
-export default function IndexLayout({children, props}){
+import Menu from "./menu";
+export default function IndexLayout({children, menu}){
     return(
         <>
             <Head>
@@ -95,40 +95,7 @@ export default function IndexLayout({children, props}){
                         </Col>
                     </Row>
                 </Container>
-                <Container className={styles.menu}>
-                    <Navbar variant={'light'} expand={'md'}>
-                        <div className="container-fluid">
-                            <Navbar.Brand href={"/"}>Ropi</Navbar.Brand>
-                            <Navbar.Toggle />
-                            <Navbar.Collapse>
-                                <Nav className="mr-auto">
-                                    <Nav.Item className={"text-left d-flex flex-row align-items-center " + styles.navItem} role={"presentation"} style={{padding: 0}}>
-                                        <i className={"far fa-question-circle "} />
-                                        <Nav.Link href="#">A propos</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item className={"d-flex flex-row align-items-center " + styles.navItem} role={"presentation"}>
-                                        <i className="fa fa-play" />
-                                        <Nav.Link href="#">En pratique</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item className={"d-flex flex-row align-items-center " + styles.navItem}  role={"presentation"}>
-                                        <i className="far fa-newspaper" />
-                                        <Nav.Link href="#">Actualités</Nav.Link>
-                                    </Nav.Item>
-                                </Nav>
-                                <Nav className="ml-auto">
-                                    <Nav.Item className={"d-flex flex-row align-items-center " + styles.navItem} role={"presentation"}>
-                                        <i className="far fa-address-book" />
-                                        <Nav.Link href="#">Contact</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item className={"d-flex flex-row align-items-center " + styles.navItem} role={"presentation"}>
-                                        <i className="fas fa-sign-in-alt" />
-                                        <Nav.Link href="#">Login</Nav.Link>
-                                    </Nav.Item>
-                                </Nav>
-                            </Navbar.Collapse>
-                        </div>
-                    </Navbar>
-                </Container>
+                <Menu data={menu}/>
                     {children}
                 <footer>
                     <Row className={styles.footer}>

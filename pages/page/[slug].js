@@ -33,8 +33,8 @@ export async function getStaticProps({params}) {
 export async function getStaticPaths() {
     return {
         paths: [
-            {params: {slug: 'ecouler-ses-ropis'}},
-            {params: {slug: 'le-ropi-mode-demploi'}}
+            {params: {slug: 'fonctionnement'}},
+            {params: {slug: 'ecouler-ses-ropis'}}
         ],
         fallback: true
     }
@@ -64,7 +64,6 @@ CMSPage.propTypes = {
     isOk: PropTypes.bool.isRequired,
     status: PropTypes.number.isRequired,
     page: PropTypes.shape({
-        id: PropTypes.number.isRequired,
         titre_menu: PropTypes.string.isRequired,
         paragraphes: PropTypes.arrayOf(PropTypes.shape({
             titre: PropTypes.string.isRequired,
