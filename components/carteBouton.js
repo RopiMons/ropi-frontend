@@ -20,14 +20,26 @@ export default function CarteBouton(props) {
 
     const divStyle = {
         color: props.boutonTextColor,
-        backgroundImage: props.boutonImage,
-        backgroundColor: props.boutonColor,
+        backgroundImage: props.boutonBackgroundImage,
+        backgroundColor: props.boutonBackgroundColor,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundBlendMode: 'multiply',
         //backgroundBlendMode: 'hard-light'
     };
+
+    const imgStyle = {
+        maxWidth: 140,
+        maxHeight: 100,
+        width: 'auto',
+        height: 100,
+    };
+
+    const iconStyle = {
+        marginLeft: 16
+    };
+
 
     return (
 
@@ -37,15 +49,54 @@ export default function CarteBouton(props) {
             +" align-items-stretch align-content-stretch align-self-stretch flex-wrap" }
                        style={divStyle}  >
 
-                {/*<MDBIcon className={"text-center"} icon="store"/>*/}
-                <MDBIcon className={"text-center"} icon={props.icone} size="4x"/>
+
+                {props.icone ? (
+                    // https://mdbootstrap.com/docs/jquery/content/icons-list/?
+                    <MDBIcon className={"text-center"} icon={props.icone} size="4x"/>
+                ) : (
+                    <Row className="text-center">
+                        <Col>
+
+                        <img className={"text-center"} src={props.logo} style={imgStyle} alt={props.imageAlt} />
+                        </Col>
+                    </Row>
+
+                )}
+
                 <p></p>
                 <h4 className="text-center">{props.texte}</h4>
 
                 <p className="text-center">{props.children}</p>
 
+                {/*Display default link button*/}
                 <p className={"text-center"}>
-                    <Button> {props.boutonText} </Button>
+                    <Button variant="light">
+                        <a href={props.boutonLienWWW1}
+                           className="link text-decoration-none">
+
+                            {/*Afficher icone si disponible, sinon texte */}
+                            {props.boutonIcon1 ? (
+                                <MDBIcon className={"text-center"} fab icon={props.boutonIcon1} size="2x"/>
+                            ) : (props.boutonText1)}
+
+                        </a>
+                    </Button>
+
+                    {/*if more link button are defined, display them*/}
+                    {props.boutonText2 ? (
+
+                        <Button variant="light" style={iconStyle}>
+                            <a href={props.boutonLienWWW2}
+                               className="link text-decoration-none">
+                                {/*Afficher icone si disponible, sinon texte */}
+                                {props.boutonIcon1 ? (
+                                    <MDBIcon className={"text-center"}  fab icon={props.boutonIcon2} size="2x"/>
+                                ) : (props.boutonText2)}
+
+                            </a>
+                        </Button>
+                    ) : (<></>)}
+
                 </p>
 
             </Jumbotron>
@@ -56,34 +107,42 @@ export default function CarteBouton(props) {
 
 export function CarteBoutonArray4(props) {
 
-   return (
+    return (
+
+
+        //<Container className="row d-flex flex-row" id="actions">
         <>
-            {/*<h1>ESSai</h1>*/}
+            {props.boutonTitleArray.map((boutonTexte, key) => {
+                return (
+                    <>
+                        <CarteBouton texte={boutonTexte}
+                                     // Icone ou logo. Si icone vide alors logo (image) est utilisé
+                                     icone={props.boutonIconArray[key]}
+                                     logo={props.boutonLogoImageArray[key]}
 
-            <div className="container row d-flex flex-row" id="actions">
+                                     // Couleur de fond si pas d'image d'iamge de fond
+                                     boutonBackgroundImage={props.boutonBackgroundImageArray[key]}
+                                     boutonBackgroundColor={props.boutonBackgroundColorArray[key]}
 
-                        {props.boutonTitleArray.map((boutonTexte, key) => {
-                            return (
-                                <>
-                                        <CarteBouton texte={boutonTexte}
-                                                     icone={props.boutonIconArray[key]}
-                                                     key={key}
-                                                     boutonText={props.boutonTextArray[key]}
-                                                     boutonTextColor={props.boutonTextColorArray[key]}
-                                                     boutonColor={props.boutonColorArray[key]}
-                                                     boutonImage={props.boutonImageArray[key]}>
-                                            {/*Je suis le children*/}
-                                            {props.boutonContentArray[key]}
-                                        </CarteBouton>
-                                </>
-                            );
-                        })}
+                                     // Bouton à cliquer avec lien
+                                     boutonTextColor={props.boutonTextColorArray[key]}
+                                     // Bouton 1 (principal)
+                                     boutonText1={props.boutonTextArray1[key]}
+                                     boutonIcon1={props.boutonIconArray1[key]}
+                                     boutonLienWWW1={props.boutonLienWWWArray1[key]}
 
-            </div>
-            {/*<CarteBouton texte={"Je suis une fantôme"}>
-                Je suis le children
-            </CarteBouton>*/}
+                                     // Bouton 2 (secondaire)
+                                     boutonText2={props.boutonTextArray2 ? (props.boutonTextArray2[key]) : ("")}
+                                     boutonIcon2={props.boutonIconArray2 ? (props.boutonIconArray2[key]) : ("")}
+                                     boutonLienWWW2={props.boutonLienWWWArray2 ? (props.boutonLienWWWArray2[key]) :("")}>
+                            {/*Je suis le children*/}
+                            {props.boutonContentArray[key]}
+                        </CarteBouton>
+                    </>
+                );
+            })}
         </>
+        //</Container>
 
 
     )

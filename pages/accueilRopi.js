@@ -16,17 +16,23 @@ import CarteBouton, {CarteBoutonArray4} from "../components/carteBouton";
 export default function AccueilRopi(props){
 
     const ActionIconArray = ["university", "store","user-circle","users"];
+    const ActionLogoImageArray =["","","",""];
     const ActionTitleArray = ['Obtenir des Ropi', 'Dépenser ses Ropi', 'Devenir partenaire', 'Devenir bénévole'];
     const ActionContentArray = [
         'Commander des billets de Ropi ou accéder à mon portefeuille de Ropi électroniques',
         'Chercher les commerces prestataires du Ropi',
         'Devenir un commerce partenaire et bénéficier des avantages du réseau ',
         'Participer à l\'évolution et devenir membre de l\'asbl Ropi.'];
-    const ActionTextArray = ["Ropi banking", "Rechercher", "Adhérer", "Aider"];
-    const ActionTextColorArray = ["black", "black", "black", "black"];
+
     const ActionColorArray = ["#ffa7a4", "#fed18d", "#abb4f0", "#93e6da"];
     const ActionImageArray = ["","","","",""];
-
+    // boutons liens à cliquer
+    const ActionTextColorArray = ["black", "black", "black", "black"];
+    const ActionTextArray1 = ["Ropi banking", "Rechercher", "Adhérer", "Aider"];
+    const ActionIconArray1 = ["facebook-square", "", "", ""];
+    const ActionButtonLienWWWArray1 = [ "internal_link", "http://www.google.be", "www.google.be", "www.google.be"];
+    //const ActionTextArray2 = ["", "", "", ""];
+    //const ActionButtonLienWWWArray2 = [ "", "", "", ""];
 
     return(
         <>
@@ -48,16 +54,23 @@ export default function AccueilRopi(props){
                         relocaliser l&#39;économie. Il existe plein de façons de participer !</h4>
                 </div>
 
+                <Container className="row d-flex flex-row" id="actions">
+                    <CarteBoutonArray4
+                        boutonIconArray={ActionIconArray}
+                        boutonLogoImageArray={ActionLogoImageArray}
+                        boutonTitleArray={ActionTitleArray}
+                        boutonContentArray={ActionContentArray}
 
-                 <CarteBoutonArray4
-                     boutonIconArray={ActionIconArray}
-                     boutonTitleArray={ActionTitleArray}
-                     boutonContentArray={ActionContentArray}
-                     boutonTextArray={ActionTextArray}
-                     boutonTextColorArray={ActionTextColorArray}
-                     boutonColorArray={ActionColorArray}
-                     boutonImageArray={ActionImageArray}>
-                 </CarteBoutonArray4>
+                        boutonBackgroundColorArray={ActionColorArray}
+                        boutonBackgroundImageArray={ActionImageArray}
+                        // boutons liens à cliquer
+                        boutonTextColorArray={ActionTextColorArray}
+                        boutonTextArray1={ActionTextArray1}
+                        boutonIconArray1={ActionIconArray1}
+                        boutonLienWWWArray1={ActionButtonLienWWWArray1}>
+
+                    </CarteBoutonArray4>
+                </Container>
 
 
                 {/* Information générale.*/}
