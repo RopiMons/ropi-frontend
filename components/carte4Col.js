@@ -71,7 +71,7 @@ export default function Carte4Col(props) {
                 {/*Display default link button*/}
                 <p className={"text-center"}>
                     <Button variant="light">
-                        <a href={props.boutonLienWWW1}
+                        <a href={props.boutonLienWWW1} target="_blank"
                            className="link text-decoration-none">
 
                             {/*Afficher icone si disponible, sinon texte */}
@@ -83,10 +83,10 @@ export default function Carte4Col(props) {
                     </Button>
 
                     {/*if more link button are defined, display them*/}
-                    {props.boutonText2 ? (
+                    {props.boutonLienWWW2 ? (
 
                         <Button variant="light" style={iconStyle}>
-                            <a href={props.boutonLienWWW2}
+                            <a href={props.boutonLienWWW2} target="_blank"
                                className="link text-decoration-none">
                                 {/*Afficher icone si disponible, sinon texte */}
                                 {props.boutonIcon1 ? (
@@ -105,7 +105,7 @@ export default function Carte4Col(props) {
     )
 }
 
-export function CarteBoutonArray4(props) {
+export function CarteBoutonAccueil(props) {
 
     return (
 
@@ -151,49 +151,34 @@ export function CarteBoutonArray4(props) {
 export function CarteBoutonListeCommerces(props) {
 
     return (
-
-        /*backgroundImage: "url(https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg)",
-        logoImage: "https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img6.jpg",
-        textColor: "white",
-        Title: "Les Halles",
-        Content: "Acheter du bon miamiam",
-        liensWWW: ["http://www.google.be", "http://www.facebook.com", "http://www.google.be"],
-        comptoirChange: true,*/
-
-        //<Container className="row d-flex flex-row" id="actions">
         <>
             {props.commerces.map((monCommerce, key) => {
                 return (
                     <>
-                        <Carte4Col texte={monCommerce.Title}
-                                     // Icone ou logo. Si icone vide alors logo (image) est utilisé
-                                   icone={"store"}
-                                   logo={props.logoImage}
+                        <Carte4Col texte={monCommerce.nomCommerce}
+                                   comptoirChange={monCommerce.comptoirChange}
+                                   icone={"store"}        // Icone ou logo.
+                                   logo={props.logoImage} // ... si icone vide alors logo (image) est utilisé
 
-                                     // Couleur de fond si pas d'image d'image de fond
-                                   boutonBackgroundImage={monCommerce.backgroundImage}
-                                   boutonBackgroundColor={"#abc123"}
+                                   boutonBackgroundImage={monCommerce.backgroundImage}  // Couleur de fond
+                                   boutonBackgroundColor={"#abc123"}                   //  ... si pas d'image d'image de fond
 
-                                     // Bouton à cliquer avec lien
                                    boutonTextColor={monCommerce.textColor}
                                      // Bouton 1 (principal)
                                    boutonText1={""}
-                                   boutonIcon1={"facebook-square"}
+                                   boutonIcon1={"affiliatetheme"}
                                    boutonLienWWW1={monCommerce.liensWWW[0]}
 
                                      // Bouton 2 (secondaire)
                                    boutonText2={""}
-                                   boutonIcon2={"affiliatetheme"}
+                                   boutonIcon2={"facebook-square"}
                                    boutonLienWWW2={monCommerce.liensWWW[1] ? (monCommerce.liensWWW[1]) :("")}>
-                            {/*Je suis le children*/}
-                            {monCommerce.content}
+
+                            {monCommerce.slogan} {/*Je suis le children*/}
                         </Carte4Col>
                     </>
                 );
             })}
         </>
-        //</Container>
-
-
     )
 }

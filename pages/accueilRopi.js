@@ -10,7 +10,7 @@ import FooterRopi from "../components/footer-ropi";
 import BlogRopi from "../components/blog-ropi.js";
 import Carte2Col from "../components/carte2Col";
 
-import Carte4Col, {CarteBoutonArray4} from "../components/carte4Col";
+import Carte4Col, {CarteBoutonAccueil} from "../components/carte4Col";
 
 
 export default function AccueilRopi(props){
@@ -66,7 +66,7 @@ export default function AccueilRopi(props){
                 </div>
 
                 <Container className="row d-flex flex-row" id="actions">
-                    <CarteBoutonArray4
+                    <CarteBoutonAccueil
                         boutonIconArray={ActionIconArray}
                         boutonLogoImageArray={ActionLogoImageArray}
                         boutonTitleArray={ActionTitleArray}
@@ -80,7 +80,7 @@ export default function AccueilRopi(props){
                         boutonIconArray1={ActionIconArray1}
                         boutonLienWWWArray1={ActionButtonLienWWWArray1}>
 
-                    </CarteBoutonArray4>
+                    </CarteBoutonAccueil>
                 </Container>
 
 
