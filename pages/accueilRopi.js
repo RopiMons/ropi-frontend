@@ -10,10 +10,13 @@ import FooterRopi from "../components/footer-ropi";
 import BlogRopi from "../components/blog-ropi.js";
 import Carte2Col from "../components/carte2Col";
 
-import CarteBouton, {CarteBoutonArray4} from "../components/carteBouton";
+import Carte4Col, {CarteBoutonArray4} from "../components/carte4Col";
 
 
 export default function AccueilRopi(props){
+
+
+
 
     const ActionIconArray = ["university", "store","user-circle","users"];
     const ActionLogoImageArray =["","","",""];
@@ -33,6 +36,14 @@ export default function AccueilRopi(props){
     const ActionButtonLienWWWArray1 = [ "internal_link", "http://www.google.be", "www.google.be", "www.google.be"];
     //const ActionTextArray2 = ["", "", "", ""];
     //const ActionButtonLienWWWArray2 = [ "", "", "", ""];
+
+
+    const texte = ["Nos valeurs pour une transition écologique et sociale ",
+        "Pourquoi une monnaie complémentaire à Mons ? Comment ça marche ?"];
+    /* 1ère image : colonne de gauche
+    2ème et 3ème image (vidéo) : colonne de droite     */
+    const imageIncluse = ["images/valeurs_alpha.png",
+        "images/illu_ropi.png", "https://www.youtube.com/embed/7-s_wIoMC9I"];
 
     return(
         <>
@@ -82,7 +93,42 @@ export default function AccueilRopi(props){
                 </div>
 
 
-                <Carte2Col> </Carte2Col>
+                <Carte2Col
+                    carteGauche={
+                    <>
+                        <h5> {texte[0]} <br/><br/></h5>
+
+                        <img className="img-fluid" id="valeurs" src={imageIncluse[0]}/>
+
+                        <p></p>
+                        <p className="align-self-center">
+                            <a className="btn btn-primary" role="button">En savoir plus</a>
+                        </p>
+                    </>}
+
+                    carteDroite={
+                    <>
+                        <h5>{texte[1]}</h5>
+
+                        <div className="row">
+                            <div className="col-lg-5">
+                                <img className="img-fluid" id="carte-interactive"
+                                     src={imageIncluse[1]}/>
+                            </div>
+                            <div className="col text-center d-none d-lg-inline align-self-center">
+                                <iframe allowFullScreen frameBorder="0"
+                                        src={imageIncluse[2]}
+                                        className="justify-content-start" id="video-mc"></iframe>
+                            </div>
+                        </div>
+
+                        <p></p>
+
+                        <p className="align-self-center">
+                            <a className="btn btn-primary flex-column" role="button">En savoir plus</a>
+                        </p>
+                    </>}>
+                </Carte2Col>
 
 
                 <BlogRopi> </BlogRopi>

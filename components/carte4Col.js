@@ -16,7 +16,7 @@ Création de 4 boutons Jumbotron en ligne, bootstrapés
 ********************************************************** */
 
 
-export default function CarteBouton(props) {
+export default function Carte4Col(props) {
 
     const divStyle = {
         color: props.boutonTextColor,
@@ -115,29 +115,79 @@ export function CarteBoutonArray4(props) {
             {props.boutonTitleArray.map((boutonTexte, key) => {
                 return (
                     <>
-                        <CarteBouton texte={boutonTexte}
-                                     // Icone ou logo. Si icone vide alors logo (image) est utilisé
+                        <Carte4Col texte={boutonTexte}
+                            // Icone ou logo. Si icone vide alors logo (image) est utilisé
                                      icone={props.boutonIconArray[key]}
                                      logo={props.boutonLogoImageArray[key]}
 
-                                     // Couleur de fond si pas d'image d'iamge de fond
+                            // Couleur de fond si pas d'image d'iamge de fond
                                      boutonBackgroundImage={props.boutonBackgroundImageArray[key]}
                                      boutonBackgroundColor={props.boutonBackgroundColorArray[key]}
 
-                                     // Bouton à cliquer avec lien
+                            // Bouton à cliquer avec lien
                                      boutonTextColor={props.boutonTextColorArray[key]}
-                                     // Bouton 1 (principal)
+                            // Bouton 1 (principal)
                                      boutonText1={props.boutonTextArray1[key]}
                                      boutonIcon1={props.boutonIconArray1[key]}
                                      boutonLienWWW1={props.boutonLienWWWArray1[key]}
 
-                                     // Bouton 2 (secondaire)
+                            // Bouton 2 (secondaire)
                                      boutonText2={props.boutonTextArray2 ? (props.boutonTextArray2[key]) : ("")}
                                      boutonIcon2={props.boutonIconArray2 ? (props.boutonIconArray2[key]) : ("")}
                                      boutonLienWWW2={props.boutonLienWWWArray2 ? (props.boutonLienWWWArray2[key]) :("")}>
                             {/*Je suis le children*/}
                             {props.boutonContentArray[key]}
-                        </CarteBouton>
+                        </Carte4Col>
+                    </>
+                );
+            })}
+        </>
+        //</Container>
+
+
+    )
+}
+
+export function CarteBoutonListeCommerces(props) {
+
+    return (
+
+        /*backgroundImage: "url(https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg)",
+        logoImage: "https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img6.jpg",
+        textColor: "white",
+        Title: "Les Halles",
+        Content: "Acheter du bon miamiam",
+        liensWWW: ["http://www.google.be", "http://www.facebook.com", "http://www.google.be"],
+        comptoirChange: true,*/
+
+        //<Container className="row d-flex flex-row" id="actions">
+        <>
+            {props.commerces.map((monCommerce, key) => {
+                return (
+                    <>
+                        <Carte4Col texte={monCommerce.Title}
+                                     // Icone ou logo. Si icone vide alors logo (image) est utilisé
+                                   icone={"store"}
+                                   logo={props.logoImage}
+
+                                     // Couleur de fond si pas d'image d'image de fond
+                                   boutonBackgroundImage={monCommerce.backgroundImage}
+                                   boutonBackgroundColor={"#abc123"}
+
+                                     // Bouton à cliquer avec lien
+                                   boutonTextColor={monCommerce.textColor}
+                                     // Bouton 1 (principal)
+                                   boutonText1={""}
+                                   boutonIcon1={"facebook-square"}
+                                   boutonLienWWW1={monCommerce.liensWWW[0]}
+
+                                     // Bouton 2 (secondaire)
+                                   boutonText2={""}
+                                   boutonIcon2={"affiliatetheme"}
+                                   boutonLienWWW2={monCommerce.liensWWW[1] ? (monCommerce.liensWWW[1]) :("")}>
+                            {/*Je suis le children*/}
+                            {monCommerce.content}
+                        </Carte4Col>
                     </>
                 );
             })}
