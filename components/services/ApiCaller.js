@@ -2,10 +2,12 @@ import fetch from "node-fetch";
 import https from "https";
 const prod = process.env.NODE_ENV === 'production';
 
-const BASE_API = 'https://localhost:51597';
+const BASE_API = 'https://localhost:8000/api';
 
-const LOGIN_CHECK = '/users/login_check';
-const MY_ADRESSES= '/commandes/my/adresses';
+const COMMERCES= '/commerce';
+const PAGE = '/page/{slug}';
+const MENU = '/menu';
+
 
 
 const httpsAgent = new https.Agent({
@@ -14,13 +16,16 @@ const httpsAgent = new https.Agent({
 
 export default class ApiCaller {
 
-
-    static async getToken(username, password){
-        return this.getJSON(LOGIN_CHECK, null,'POST', JSON.stringify({username: username, password: password}));
+    static async getCommerces(){
+        return this.getJSON(COMMERCES);
     }
 
-    static async getMyAdresses(token){
-        return this.getJSON(MY_ADRESSES, token);
+    static async getPage(slug){
+        return this.getJSON(PAGE.replace("{slug}",slug));
+    }
+
+    static async getMenu(){
+        return this.getJSON(MENU);
     }
 
     static getRequestOptions(method = 'get', token = null) {
