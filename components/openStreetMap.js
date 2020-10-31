@@ -1,6 +1,6 @@
-import React, { Component, createRef } from 'react';
-import { Map, TileLayer, Marker, Popup, MapControl, withLeaflet } from 'react-leaflet';
-import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+import React, {Component, createRef} from 'react';
+import {Map, TileLayer, Marker, Popup, MapControl, withLeaflet} from 'react-leaflet';
+import {GeoSearchControl, OpenStreetMapProvider} from 'leaflet-geosearch';
 
 
 class SearchBox extends MapControl {
@@ -29,12 +29,12 @@ class SearchBox extends MapControl {
 export default class MyMap extends Component {
     state = {
         center: {
-            lat: 31.698956,
-            lng: 76.732407,
+            lat: 50.4460,
+            lng: 3.9269,
         },
         marker: {
-            lat: 31.698956,
-            lng: 76.732407,
+            lat: 50.4460,
+            lng: 3.9269,
         },
         zoom: 13,
         draggable: true,
@@ -43,7 +43,7 @@ export default class MyMap extends Component {
     refmarker = createRef(this.state.marker)
 
     toggleDraggable = () => {
-        this.setState({ draggable: !this.state.draggable });
+        this.setState({draggable: !this.state.draggable});
     }
 
     updateMarker = (e) => {
@@ -72,7 +72,7 @@ export default class MyMap extends Component {
         return (
             <div className="map-root">
                 <Map center={position} zoom={this.state.zoom} style={{
-                    height:"700px"
+                    height: "400px"
                 }}>
                     <TileLayer
                         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -90,7 +90,7 @@ export default class MyMap extends Component {
               </span>
                         </Popup>
                     </Marker>
-                    <SearchBar updateMarker={this.updateMarker} />
+                    <SearchBar updateMarker={this.updateMarker}/>
                 </Map>
                 <style jsx>{`
                 .map-root {

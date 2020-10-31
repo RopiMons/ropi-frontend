@@ -13,9 +13,9 @@ import Carte4Col, {CarteBoutonListeCommerces} from "../components/carte4Col";
 import dynamic from "next/dynamic";
 
 //https://react-leaflet.js.org/
-
+//https://medium.com/@nargessmi87/how-to-embede-open-street-map-in-a-webpage-like-google-maps-8968fdad7fe4
 //https://github.com/rajeshdh/react-leaflet-with-nextjs/blob/master/components/map.js
-const MapWithNoSSR = dynamic(() => import('./../components/map'),{ssr:false});
+const MapWithNoSSR = dynamic(() => import('./../components/openStreetMap'),{ssr:false});
 
 
 
@@ -32,16 +32,16 @@ export default function CommerceRopi(props) {
 
     const myMapColStyle = {};
 
-    const commerces =
+    /*const commerces =
         [
             {
                 backgroundImage: "url(https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg)",
-                logoImage: "https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img6.jpg",
-                textColor: "white",
-                nomCommerce: "Les Halles",
+         logoImage: "https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img6.jpg",
+        text_color       textColor: "white",
+               nomCommerce: "Les Halles",
                 slogan: "Acheter du bon miamiam",
-                liensWWW: ["https://www.leshallesdumanege.be/", "https://www.facebook.com/farm.leshallescooperatives"],
-                comptoirChange: true,
+            liensWWW: ["https://www.leshallesdumanege.be/", "https://www.facebook.com/farm.leshallescooperatives"],
+            comptoirChange: true,
             },
             {
                 backgroundImage: "url(images/commerces/fondsPetitMarais_ImageBgd.jpg)",
@@ -52,7 +52,83 @@ export default function CommerceRopi(props) {
                 liensWWW: ["http://www.lesfondusdupetitmarais.be/", "https://www.facebook.com/habitatpetitmarais"],
                 comptoirChange: false,
             }
-        ];
+        ];*/
+
+    const commercesJson =
+        '[{"id": 1, ' +
+        '"nom": "Ropi ASBL",' +
+        '"slogan": "Payez en argent comptant !",' +
+            '"text_color": "#ffffff",' +
+            '"logo": "https://ropi.be/img/ropi_logo.png",' +
+            '"created_at": "2020-10-31T12:32:05+01:00",' +
+            '"update_at": "2020-10-31T12:32:05+01:00",' +
+            '"lat": 50.4552629,' +
+            '"lon": 3.9510846,' +
+            '"liens": [' +
+            '    {' +
+            '        "url": "https://www.ropi.be",' +
+            '        "commentaire": ""' +
+            '    },' +
+            '    {' +
+            '        "url": "https://www.facebook.com/RopiAsbl",' +
+            '        "commentaire": ""' +
+            '    }' +
+            '],' +
+            '"adresses": [' +
+            '    {' +
+            '        "rue": "Chemin du Ropi",' +
+            '        "numero": "32",' +
+            '        "ville": {' +
+            '            "code_postal": "7000",' +
+            '            "ville": "Mons"' +
+             '       },' +
+             '       "pays": {' +
+             '           "nom": "Belgique",' +
+             '           "nom_court": "Be"' +
+
+             '       }' +
+             '   }' +
+            '],' +
+            '"bg_image": "http://ropi.be/img/ROPI_WEB_BG_BL.png",' +
+            '"is_comptoire": false' +
+        '},' +
+        '{' +
+        '    "id": 2,' +
+        '    "nom": "Fonds du petit marais",' +
+        '    "slogan": "Lieu de vie communautaire et démocratique",' +
+         '   "text_color": "#ffffff",' +
+         '   "logo": "http://mfs0.cdnsw.com/fs/Root/small/al5b0-logo_fcj.png",' +
+         '   "created_at": "2020-10-31T12:32:05+01:00",' +
+         '   "update_at": "2020-10-31T12:32:05+01:00",' +
+         '   "lat": 50.455242,' +
+         '   "lon": 3.893146,' +
+         '   "liens": [' +
+         '       {' +
+         '           "url": "https://www.facebook.com/habitatpetitmarais"' +
+          '      },' +
+          '      {' +
+          '          "url": "http://www.lesfondusdupetitmarais.be"' +
+          '      }' +
+          '  ],' +
+          '  "adresses": [' +
+          '      {' +
+          '          "rue": "Rue de Ghlin",' +
+          '          "numero": "24",' +
+          '          "ville": {' +
+           '             "code_postal": "7012",' +
+           '             "ville": "Jemappes"' +
+           '         },' +
+           '         "pays": {' +
+           '             "nom": "Belgique",' +
+           '             "nom_court": "Be"' +
+           '         }' +
+           '     }' +
+            '],' +
+            '"bg_image": "http://mfs0.cdnsw.com/fs/Root/large/d1fd0-IMG_20150820_191811.jpg",' +
+            '"is_comptoire": true }]';
+
+
+    const commerces = JSON.parse(commercesJson);
 
 
     const defaultIcon = "store"; //https://mdbootstrap.com/docs/react/content/icons-list/
@@ -63,6 +139,12 @@ export default function CommerceRopi(props) {
 
     const position = [51.505, -0.09];  // ongoing for openstreetmap
 
+    const mapDivStyle={
+        height: "100 px",
+        background: "#56854c",
+        margin: "10px",
+        color: "white"
+    };
 
     return (
         <>
@@ -79,27 +161,34 @@ export default function CommerceRopi(props) {
 
 
                 <div className="container py-xl-5" id="passez-action">
-                    <h2 className="text-center my-3">Les prestaires</h2>
+                    <h2 className="text-center my-3">Les prestataires qui acceptent le Ropi</h2>
                     <h4 className="text-center subtitle font-weight-normal">
-                        Les commerçants, prestataires et associations qui acceptent le Ropi</h4>
+                        Commerçants, prestataires et associations </h4>
                 </div>
 
 
                 <Carte2Col
                     carteGauche={
                         <>
-                            <h5> Filtre <br/><br/></h5>
+                            <h5> Filtrez les prestataires selon différents critères <br/><br/></h5>
 
                             <form>
                                 <label>
-                                    Code postal :
-                                    <input type="text" name="name"/>
+                                    Nom et description (texte libre):
+                                    <input type="text" name="freeText"/>
                                 </label>
                                 <label>
-                                    Nom et description :
-                                    <input type="text" name="name"/>
+                                    Code postal :
+                                    <input type="text" name="postalCode"/>
                                 </label>
-                                <input type="submit" value="Envoyer"/>
+
+                                <label>
+                                    Types de commerce :
+                                    <input type="text" name="prestataireType"/>
+                                </label>
+
+                                <br></br>
+                                <input type="submit" value="Filtrer"/>
                             </form>
 
                         </>}
@@ -109,7 +198,7 @@ export default function CommerceRopi(props) {
                             <Row className={"justify-content-between align-items-center d-md-flex"}>
                                 <Col style={myMapColStyle}>
 
-                                    <div className="embed-responsive embed-responsive-16by9">
+                                    <div className="embed-responsive " style ={mapDivStyle}>
                                         <MapWithNoSSR/>
 
                                         {/*https://blog.theodo.com/2018/01/responsive-iframes-css-trick/*/}
@@ -146,6 +235,18 @@ export default function CommerceRopi(props) {
                     <CarteBoutonListeCommerces
                         commerces={commerces}>
                     </CarteBoutonListeCommerces>
+
+                    <Carte4Col texte="Ajouter mon commerce"
+                               icone='plus'
+                               logo=''
+
+                               boutonTextColor={'#ffffff'}
+                               boutonBackgroundColor={'#7f7cff'}
+                               boutonBackgroundImage=''
+                               boutonText1={'Ajouter mon commerce'}
+                               boutonLienWWW1={"internal_link_ajouter_commerce"}>
+                        {/*Je suis le children*/}
+                    </Carte4Col>
 
                 </Container>
                 {/*boutonBackgroundImage="images/commercesLogo/fondsPetitMarais.jpg"*/}

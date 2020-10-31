@@ -50,17 +50,15 @@ export default function Carte4Col(props) {
                        style={divStyle}  >
 
 
-                {props.icone ? (
+                {props.logo ? (
+                        <Row className="text-center">
+                            <Col>
+                                <img className={"text-center"} src={props.logo} style={imgStyle} alt={props.imageAlt} />
+                            </Col>
+                        </Row>
+                ) : (
                     // https://mdbootstrap.com/docs/jquery/content/icons-list/?
                     <MDBIcon className={"text-center"} icon={props.icone} size="4x"/>
-                ) : (
-                    <Row className="text-center">
-                        <Col>
-
-                        <img className={"text-center"} src={props.logo} style={imgStyle} alt={props.imageAlt} />
-                        </Col>
-                    </Row>
-
                 )}
 
                 <p></p>
@@ -155,24 +153,24 @@ export function CarteBoutonListeCommerces(props) {
             {props.commerces.map((monCommerce, key) => {
                 return (
                     <>
-                        <Carte4Col texte={monCommerce.nomCommerce}
-                                   comptoirChange={monCommerce.comptoirChange}
+                        <Carte4Col texte={monCommerce.nom}
+                                   comptoirChange={monCommerce.is_comptoire}
                                    icone={"store"}        // Icone ou logo.
-                                   logo={props.logoImage} // ... si icone vide alors logo (image) est utilisé
+                                   logo={monCommerce.logo} // ... si icone vide alors logo (image) est utilisé
 
-                                   boutonBackgroundImage={monCommerce.backgroundImage}  // Couleur de fond
-                                   boutonBackgroundColor={"#abc123"}                   //  ... si pas d'image d'image de fond
+                                   boutonBackgroundImage={'url('+ monCommerce.bg_image + ')'}  // Couleur de fond
+                                   boutonBackgroundColor={"#fceb99"}                   //  ... si pas d'image d'image de fond
 
-                                   boutonTextColor={monCommerce.textColor}
+                                   boutonTextColor={monCommerce.text_color}
                                      // Bouton 1 (principal)
                                    boutonText1={""}
-                                   boutonIcon1={"affiliatetheme"}
-                                   boutonLienWWW1={monCommerce.liensWWW[0]}
+                                   boutonIcon1={!monCommerce.liens[0].url.includes("facebook") ? ("affiliatetheme"):("facebook-square")}
+                                   boutonLienWWW1={monCommerce.liens[0].url}
 
                                      // Bouton 2 (secondaire)
                                    boutonText2={""}
-                                   boutonIcon2={"facebook-square"}
-                                   boutonLienWWW2={monCommerce.liensWWW[1] ? (monCommerce.liensWWW[1]) :("")}>
+                                   boutonIcon2={!monCommerce.liens[1].url.includes("facebook") ? ("affiliatetheme"):("facebook-square")}
+                                   boutonLienWWW2={monCommerce.liens[1].url ? (monCommerce.liens[1].url) :("")}>
 
                             {monCommerce.slogan} {/*Je suis le children*/}
                         </Carte4Col>
