@@ -2,8 +2,9 @@ import fetch from "node-fetch";
 import https from "https";
 const prod = process.env.NODE_ENV === 'production';
 
-const BASE_API = 'https://127.0.0.1:8000/api';
+const BASE_API = 'https://localhost:8000/api';
 
+const COMMERCES= '/commerce';
 const PAGE = '/page/{slug}';
 const MENU = '/menu';
 
@@ -14,6 +15,10 @@ const httpsAgent = new https.Agent({
 });
 
 export default class ApiCaller {
+
+    static async getCommerces(){
+        return this.getJSON(COMMERCES);
+    }
 
     static async getPage(slug){
         return this.getJSON(PAGE.replace("{slug}",slug));

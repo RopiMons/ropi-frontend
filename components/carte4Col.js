@@ -1,11 +1,8 @@
-import Head from "next/head";
-
 import React from "react";
-import {Row, Container, Col, Table, Navbar, Nav, Jumbotron, Button} from "react-bootstrap";
-//import '@fortawesome/fontawesome-free/css/all.min.css';
+import {Row, Col, Jumbotron, Button} from "react-bootstrap";
 import {MDBIcon} from "mdbreact";
 
-import styles from './ropi_base.module.css'
+import styles from '../layout/css/index-layout.module.css'
 
 // react-bootsrap documentation
 //https://react-bootstrap.github.io/layout/grid/
@@ -14,7 +11,6 @@ import styles from './ropi_base.module.css'
 /* **********************************************************
 Création de 4 boutons Jumbotron en ligne, bootstrapés
 ********************************************************** */
-
 
 export default function Carte4Col(props) {
 
@@ -28,27 +24,24 @@ export default function Carte4Col(props) {
         backgroundBlendMode: 'multiply',
         //backgroundBlendMode: 'hard-light'
     };
-
     const imgStyle = {
         maxWidth: 140,
         maxHeight: 100,
         width: 'auto',
         height: 100,
     };
-
     const iconStyle = {
         marginLeft: 16
     };
 
 
     return (
+        <Col className="col-6 col-md-4 col-lg-3 d-flex align-self-stretch" >
 
-        <div className="col-6 col-md-4 col-lg-3 d-flex  align-self-stretch" >
-
-            <Jumbotron className={"d-flex flex-column flex-grow-1 justify-content-between"
-            +" align-items-stretch align-content-stretch align-self-stretch flex-wrap" }
-                       style={divStyle}  >
-
+            <Jumbotron
+                className={"d-flex flex-column flex-grow-1 justify-content-between align-items-stretch align-content-stretch align-self-stretch flex-wrap" }
+                style={divStyle}
+            >
 
                 {props.logo ? (
                         <Row className="text-center">
@@ -61,28 +54,27 @@ export default function Carte4Col(props) {
                     <MDBIcon className={"text-center"} icon={props.icone} size="4x"/>
                 )}
 
-                <p></p>
+                <br />
                 <h4 className="text-center">{props.texte}</h4>
-
                 <p className="text-center">{props.children}</p>
 
                 {/*Display default link button*/}
                 <p className={"text-center"}>
                     <Button variant="light">
-                        <a href={props.boutonLienWWW1} target="_blank"
-                           className="link text-decoration-none">
-
+                        <a
+                            href={props.boutonLienWWW1}
+                            target="_blank"
+                            className="link text-decoration-none"
+                        >
                             {/*Afficher icone si disponible, sinon texte */}
                             {props.boutonIcon1 ? (
                                 <MDBIcon className={"text-center"} fab icon={props.boutonIcon1} size="2x"/>
                             ) : (props.boutonText1)}
-
                         </a>
                     </Button>
 
                     {/*if more link button are defined, display them*/}
-                    {props.boutonLienWWW2 ? (
-
+                    {props.boutonLienWWW2 && (
                         <Button variant="light" style={iconStyle}>
                             <a href={props.boutonLienWWW2} target="_blank"
                                className="link text-decoration-none">
@@ -90,25 +82,18 @@ export default function Carte4Col(props) {
                                 {props.boutonIcon1 ? (
                                     <MDBIcon className={"text-center"}  fab icon={props.boutonIcon2} size="2x"/>
                                 ) : (props.boutonText2)}
-
                             </a>
                         </Button>
-                    ) : (<></>)}
-
+                    )}
                 </p>
-
             </Jumbotron>
-        </div>
-
+        </Col>
     )
 }
 
 export function CarteBoutonAccueil(props) {
 
     return (
-
-
-        //<Container className="row d-flex flex-row" id="actions">
         <>
             {props.boutonTitleArray.map((boutonTexte, key) => {
                 return (
@@ -140,9 +125,6 @@ export function CarteBoutonAccueil(props) {
                 );
             })}
         </>
-        //</Container>
-
-
     )
 }
 

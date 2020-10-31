@@ -1,10 +1,7 @@
-import Head from "next/head";
-
 import React from "react";
-import {Row, Container, Col, Table, Navbar, Nav, Jumbotron, Button} from "react-bootstrap";//import '@fortawesome/fontawesome-free/css/all.min.css';
 import {MDBIcon} from "mdbreact";
 
-import styles from './ropi_base.module.css'
+import styles from '../layout/css/index-layout.module.css'
 
 /* **********************************************************
 Création d'un blog de nouvelles, avec

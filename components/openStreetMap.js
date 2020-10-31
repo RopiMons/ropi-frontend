@@ -1,29 +1,5 @@
-import React, {Component, createRef} from 'react';
-import {Map, TileLayer, Marker, Popup, MapControl, withLeaflet} from 'react-leaflet';
-import {GeoSearchControl, OpenStreetMapProvider} from 'leaflet-geosearch';
-
-
-class SearchBox extends MapControl {
-    constructor(props) {
-        super(props);
-        props.leaflet.map.on('geosearch/showlocation', (e) => props.updateMarker(e));
-    }
-
-    createLeafletElement() {
-        const searchEl = GeoSearchControl({
-            provider: new OpenStreetMapProvider(),
-            style: 'bar',
-            showMarker: true,
-            showPopup: false,
-            autoClose: true,
-            retainZoomLevel: false,
-            animateZoom: true,
-            keepResult: false,
-            searchLabel: 'search'
-        });
-        return searchEl;
-    }
-}
+import React, {Component} from 'react';
+import {Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
 
 export default class MyMap extends Component {
@@ -40,8 +16,6 @@ export default class MyMap extends Component {
         draggable: true,
     }
 
-    refmarker = createRef(this.state.marker)
-
     toggleDraggable = () => {
         this.setState({draggable: !this.state.draggable});
     }
@@ -54,21 +28,9 @@ export default class MyMap extends Component {
         console.log(e.marker.getLatLng());
     }
 
-    updatePosition = () => {
-        const marker = this.refmarker.current;
-        if (marker != null) {
-            this.setState({
-                marker: marker.leafletElement.getLatLng(),
-            });
-        }
-        console.log(marker.leafletElement.getLatLng());
-    }
-
     render() {
         const position = [this.state.center.lat, this.state.center.lng];
         const markerPosition = [this.state.marker.lat, this.state.marker.lng];
-        const SearchBar = withLeaflet(SearchBox);
-
         return (
             <div className="map-root">
                 <Map center={position} zoom={this.state.zoom} style={{
@@ -85,12 +47,11 @@ export default class MyMap extends Component {
                         animate={true}
                         ref={this.refmarker}>
                         <Popup minWidth={90}>
-              <span onClick={this.toggleDraggable}>
-                {this.state.draggable ? 'DRAG MARKER' : 'MARKER FIXED'}
-              </span>
+                          <span onClick={this.toggleDraggable}>
+                            {this.state.draggable ? 'DRAG MARKER' : 'MARKER FIXED'}
+                          </span>
                         </Popup>
                     </Marker>
-                    <SearchBar updateMarker={this.updateMarker}/>
                 </Map>
                 <style jsx>{`
                 .map-root {

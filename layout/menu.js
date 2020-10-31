@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styles from "./css/index-layout.module.css";
 import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import Link from "next/link";
