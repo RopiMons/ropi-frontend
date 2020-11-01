@@ -2,16 +2,15 @@ import fetch from "node-fetch";
 import https from "https";
 const prod = process.env.NODE_ENV === 'production';
 
+
 const BASE_API = 'https://api.ropi.be';
 
 const COMMERCES= '/commerce';
 const PAGE = '/page/{slug}';
 const MENU = '/menu';
 
-
-
 const httpsAgent = new https.Agent({
-    rejectUnauthorized: prod,
+    rejectUnauthorized: prod
 });
 
 export default class ApiCaller {
