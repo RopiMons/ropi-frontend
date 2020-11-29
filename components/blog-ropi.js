@@ -62,6 +62,7 @@ export function BlogRopiPieceOfNewsSecondaries(props) {
 }
 
 export default function BlogRopi(props) {
+
     return (
 
         <div className="col-md-12">
@@ -77,8 +78,8 @@ export default function BlogRopi(props) {
                     </div>
 
                     <div className="row py-5 justify-content-center">
-                     <FacebookLatestNews />
-                     </div>
+                        <FacebookLatestNews messageId={props.messageId} />
+                    </div>
 
                     <div className="row mt-4">                                         
 
