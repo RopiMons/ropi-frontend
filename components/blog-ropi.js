@@ -1,5 +1,6 @@
 import React from "react";
 import {MDBIcon} from "mdbreact";
+import FacebookLatestNews from "./loadFacebookSDKjs"
 
 import styles from '../layout/css/index-layout.module.css'
 
@@ -13,17 +14,29 @@ Création d'un blog de nouvelles, avec
 export function BlogRopiPieceOfNewsMain(props) {
     return (
 
-        <div className="col-lg-6">
-            <div className="card border-0 mb-4"><a href={props.lien}>
-                <img className="card-img-top"
-                     src={props.image}
-                     alt={props.imageAlt}/></a>
-                <div className="date-pos text-center p-3 bg-name-date">{props.auteur} {props.date}</div>
-                <h5 className="font-weight-medium mt-3"><a href={props.lien}
-                                                           className="link text-decoration-none">{props.titre}</a></h5>
-                <p className="m-t-20"> {props.chapeau}  </p>
+        <>
+
+            
+
+
+            <div className="col-mb-6">
+                            
+                <div className="card border-0 mb-4">
+                    
+                    <a href={props.lien}>
+                        
+                         <img className="card-img-top"
+                            src={props.image}
+                            alt={props.imageAlt} /> 
+                    </a>
+                    <div className="date-pos text-center p-3 bg-name-date">{props.auteur} {props.date}</div>
+                    <h5 className="font-weight-medium mt-3"><a href={props.lien}
+                        className="link text-decoration-none">{props.titre}</a></h5>
+                    <p className="m-t-20"> {props.chapeau}  </p>
+                </div>
             </div>
-        </div>
+
+        </>
     )
 }
 
@@ -63,7 +76,11 @@ export default function BlogRopi(props) {
                         </div>
                     </div>
 
-                    <div className="row mt-4">
+                    <div className="row py-5 justify-content-center">
+                     <FacebookLatestNews />
+                     </div>
+
+                    <div className="row mt-4">                                         
 
                         <BlogRopiPieceOfNewsMain
                             image={"https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg"}
