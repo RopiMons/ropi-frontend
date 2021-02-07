@@ -4,7 +4,7 @@ import https from "https";
 const prod = process.env.NODE_ENV === 'production';
 
 
-const BASE_API = 'https://localhost:8000/api';
+const BASE_API = prod ? 'https://api.ropi.be/' : 'https://localhost:8000/api';
 
 const COMMERCES = '/commerces';
 const PAGE = '/page_statiques/{slug}';
