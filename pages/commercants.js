@@ -6,6 +6,7 @@ import Carte4Col, {CarteBoutonListeCommerces} from "../components/carte4Col";
 import dynamic from "next/dynamic";
 import ApiCaller from "../components/services/ApiCaller";
 import Error from "next/error";
+import { element } from "prop-types";
 
 const MapWithNoSSR = dynamic(() => import('./../components/openStreetMap'),{ssr:false});
 
@@ -46,7 +47,65 @@ const AddCommerce = ()=>{
     )
 }
 
+const doFilter = (setCommerceFn, commerces,setFilters, filters, evt) => {   
+
+    // Récupérer filtres à choix multiples et le mettre dans un array 
+    switch(evt.target.id){
+        case "codePostal":
+            let cp = [];
+            let codePostauxSelectionnes = [...evt.target.selectedOptions];   // TODO Fab : utiliser getElementbyId
+            codePostauxSelectionnes.forEach(element => cp.push(element.value) );   // Transforme le htmlCollection en array
+            filters.codePostal = cp;
+        console.log(cp);
+        break;
+        case "typeCommerce":
+            //todo    
+        break;
+    }
+
+    setFilters(filters);
+
+    // TODO : Continuer à coder ici
+
+    // Filtre la liste des commerçants sur base requête utilisateur.
+    var filteredCommerces;
+    
+    var chkComptoir = document.getElementById('comptoirChange');
+    var codePostal = document.getElementById('codePostal');
+    var typeCommerce = document.getElementById('typeCommerce');
+
+    if (chkComptoir.checked)
+    {
+        filteredCommerces = commerces.filter(commerces => commerces.is_comptoire)
+        console.log("Donner les comptoirs")
+    } else {
+        filteredCommerces = commerces
+        console.log("Donner les NON-comptoirs")
+    }
+
+    console.log(codePostal.value)
+    console.log(typeCommerce)
+
+    //console.log(filteredCommerces[0].adresses[0].ville.code_postal)
+
+    setCommerceFn(filteredCommerces);
+     
+}
+
 export default function Commercants({status, commerces}) {
+
+    // Utilisation d'un hook-state : https://fr.reactjs.org/docs/hooks-state.html
+    let [Filteredcommerces, setCommerces] = React.useState(commerces);
+
+    // TODO Fab : je pense que le hooks n'est pas nécessaire si j'utilise le getElementById dans doFilter
+    let [filters, setFilters] = React.useState({
+        nom: null,
+        codePostal: [],
+        isComptoire: null,
+        type: null
+    })
+
+
     if(status!==200){
         return <Error statusCode={status} />;
     }
@@ -61,19 +120,49 @@ export default function Commercants({status, commerces}) {
             <Carte2Col
                 carteGauche={
                     <form>
-                        <h5>Filtrez les prestataires selon différents critères</h5>
+                        <h4>Filtrez les prestataires selon différents critères</h4>
                         <br />
                         <label>
-                            Nom et description (texte libre):
+                            <h5>Nom et description</h5>
                             <input type="text" name="freeText"/>
                         </label>
                         <label>
-                            Code postal :
-                            <input type="text" name="postalCode"/>
+                            <h5>Comptoir de change &nbsp;
+                            <input type="checkbox" id="comptoirChange" name="comptoirChange" 
+                                onChange={(evt) => doFilter(setCommerces, commerces, evt)}></input></h5>
                         </label>
                         <label>
-                            Types de commerce :
-                            <input type="text" name="prestataireType"/>
+                            <h5>Code postal</h5>                        
+                            <select multiple={"multiple"} size="4" id="codePostal" 
+                                onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}>
+
+                                <option value="tous">Tous</option>
+                                <option value="7020">7020 NIMY</option>
+                                <option value="7000">7000 Mons</option>
+                                <option value="7012">7012 Jemappes</option>
+                                <option value="7021">7021 Havré</option>
+                                <option value="7011">7011 Ghlin</option>
+                                <option value="7022">7022 Hyon</option>
+                                <option value="7034">7034 Mons</option>
+                                <option value="7050">7050 Jurbise / Soignies</option>    
+                            </select>           
+
+
+                        </label>
+                        <label>
+                            <h5>Types de commerce</h5>                            
+                            <select multiple size="4" id="typeCommerce"
+                              onChange={(evt) => doFilter(setCommerces, commerces, evt)}>
+                                <option value="">Tous</option>
+                                <option value="1">Alimentation</option>
+                                <option value="2">Habitat</option>
+                                <option value="3">Santé et bien être</option>
+                                <option value="4">Enseignement et culture</option>
+                                <option value="5">Soin à la nature et à la terre</option>
+                                <option value="6">Outils et technologies</option>
+                                <option value="7">Finance et économie</option>    
+                                <option value="8">Foncier et gouvernance</option>    
+                            </select>  
                         </label>
                         <br />
                         <input type="submit" value="Filtrer"/>
@@ -84,7 +173,7 @@ export default function Commercants({status, commerces}) {
                     <>
                         <Row className={"justify-content-between align-items-center d-md-flex"}>
                             <Col style={myMapColStyle}>
-                                <div className="embed-responsive " style ={mapDivStyle}>
+                                <div className="embed-responsive" style ={mapDivStyle}>
                                     <MapWithNoSSR/>
                                 </div>
                             </Col>
@@ -95,11 +184,13 @@ export default function Commercants({status, commerces}) {
                 }
             />
 
+            {/******  Affiche la liste des commerces  ********/}
             <Container className="row d-flex flex-row" id="actions">
                 <AddCommerce />
-                <CarteBoutonListeCommerces commerces={commerces}  />
+                <CarteBoutonListeCommerces commerces={Filteredcommerces}  />
                 <AddCommerce />
-            </Container>
+            </Container> 
+            
         </>
     )
 

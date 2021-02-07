@@ -11,7 +11,6 @@ export default function IndexLayout({children, menu}){
     return(
         <>
         
-
             <Head>
                 <title>Le Ropi à Mons</title>
                 <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />       

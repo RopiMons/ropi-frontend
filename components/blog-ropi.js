@@ -14,11 +14,7 @@ Création d'un blog de nouvelles, avec
 export function BlogRopiPieceOfNewsMain(props) {
     return (
 
-        <>
-
-            
-
-
+        <>        
             <div className="col-mb-6">
                             
                 <div className="card border-0 mb-4">
