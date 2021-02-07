@@ -4,6 +4,10 @@ import {Col, Row} from "react-bootstrap";
 import DOMPurify from 'isomorphic-dompurify';
 import PropTypes from 'prop-types';
 
+/* **********************************************************
+Rendu du contenu des pages CMS
+    organisé par paragraphe avec un titre
+********/
 
 export default function Paragraphe(props){
     return(

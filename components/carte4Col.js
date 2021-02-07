@@ -27,8 +27,8 @@ export default function Carte4Col(props) {
     const imgStyle = {
         maxWidth: 140,
         maxHeight: 100,
-        width: 'auto',
-        height: 100,
+        //width: 'auto',
+        //height: 100,
     };
     const iconStyle = {
         marginLeft: 16
