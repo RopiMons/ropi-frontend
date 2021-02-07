@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Row, Col} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 
 import Carte2Col from "../components/carte2Col";
 import Carte4Col, {CarteBoutonListeCommerces} from "../components/carte4Col";
@@ -17,32 +17,35 @@ const mapDivStyle={
 };
 const myMapColStyle = {};
 
-export async function getStaticProps(context) {
-    let status, data = null;
+export async function getStaticProps() {
+    let status = null, data = null;
     await ApiCaller.getCommerces().then(response => {
         status = response.status;
-        if(status === 200){
-            data = response.json;
+        if (status === 200 && response.json && response.json['hydra:member']) {
+            data = response.json['hydra:member'];
         }
     });
     return {
         props: {
-            status : status,
+            status: status,
             commerces: data
-        }
+        },
+        revalidate: 3600
     }
 }
-const AddCommerce = ()=>{
-    return(
-        <Carte4Col texte="Ajouter mon commerce"
-                   icone='plus'
-                   logo=''
-                   boutonTextColor={'#ffffff'}
-                   boutonBackgroundColor={'#7f7cff'}
-                   boutonBackgroundImage=''
-                   boutonText1={'Ajouter mon commerce'}
-                   boutonLienWWW1={"internal_link_ajouter_commerce"}>
-        </Carte4Col>
+
+const AddCommerce = () => {
+    return (
+        <Carte4Col
+            texte="Ajouter mon commerce"
+            icone='plus'
+            logo=''
+            boutonTextColor={'#ffffff'}
+            boutonBackgroundColor={'#7f7cff'}
+            boutonBackgroundImage=''
+            boutonText1={'Ajouter mon commerce'}
+            boutonLienWWW1={"internal_link_ajouter_commerce"}
+        />
     )
 }
 
@@ -102,6 +105,4 @@ export default function Commercants({status, commerces}) {
             </Container>
         </>
     )
-
-
 }

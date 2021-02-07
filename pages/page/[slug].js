@@ -5,17 +5,15 @@ import Error from "next/error";
 import PropTypes from 'prop-types';
 
 
-
 export async function getStaticProps({params}) {
 
-    let status, isOk, data = null;
-
+    let status = null, isOk = null, data = null;
     await ApiCaller.getPage(params.slug).then(json => {
             status = json.status;
             isOk = 200 === json.status;
-            if(isOk){
-                data = json.json
-            }
+        if (isOk) {
+            data = json.json
+        }
         }
     );
 

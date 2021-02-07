@@ -1076,11 +1076,6 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@coolaj86/urequest@^1.3.6":
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/@coolaj86/urequest/-/urequest-1.3.7.tgz#66a1d66378dd6534e9c8e68948bf09acf32bab77"
-  integrity sha512-PPrVYra9aWvZjSCKl/x1pJ9ZpXda1652oJrPBYy5rQumJJMkmTBN3ux+sK2xAUwVvv2wnewDlaQaHLxLwSHnIA==
-
 "@date-io/moment@1.3.5":
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-1.3.5.tgz#e5bf3837cbd3f5f5f5d7f49d8549e4118ea75f8d"
@@ -5416,6 +5411,11 @@ react-event-listener@^0.6.2, react-event-listener@^0.6.6:
     prop-types "^15.6.0"
     warning "^4.0.1"
 
+react-extra-prop-types@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/react-extra-prop-types/-/react-extra-prop-types-0.3.1.tgz#2e0db6fc9b972e32cf3fb479251b8358a9090b55"
+  integrity sha512-y5ZRf8C39LSbGULM5bRgvepHJwQyzbuGNMSIxuS7eXshgr4f1/385oN4PqHPecm6o1CrzIBrH7qVVmftkkuWCA==
+
 react-fast-compare@^2.0.1:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
@@ -6202,13 +6202,6 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     safer-buffer "^2.0.2"
     tweetnacl "~0.14.0"
-
-ssl-root-cas@latest:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/ssl-root-cas/-/ssl-root-cas-1.3.1.tgz#6b0566f7de4f0e6be99fbd93dbfbe5c7ab33b949"
-  integrity sha512-KR8J210Wfvjh+iNE9jcQEgbG0VG2713PHreItx6aNCPnkFO8XChz1cJ4iuCGeBj0+8wukLmgHgJqX+O5kRjPkQ==
-  dependencies:
-    "@coolaj86/urequest" "^1.3.6"
 
 ssri@^6.0.1:
   version "6.0.1"

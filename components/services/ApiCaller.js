@@ -1,12 +1,13 @@
 import fetch from "node-fetch";
 import https from "https";
+
 const prod = process.env.NODE_ENV === 'production';
 
 
-const BASE_API = 'https://api.ropi.be';
+const BASE_API = 'https://localhost:8000/api';
 
-const COMMERCES= '/commerce';
-const PAGE = '/page/{slug}';
+const COMMERCES = '/commerces';
+const PAGE = '/page_statiques/{slug}';
 const MENU = '/menu';
 
 const httpsAgent = new https.Agent({
@@ -15,7 +16,7 @@ const httpsAgent = new https.Agent({
 
 export default class ApiCaller {
 
-    static async getCommerces(){
+    static async getCommerces() {
         return this.getJSON(COMMERCES);
     }
 
@@ -30,7 +31,7 @@ export default class ApiCaller {
     static getRequestOptions(method = 'get', token = null) {
         const request = {
             method: method,
-            headers: { 'Content-Type': 'application/json' },
+            headers: {'Content-Type': 'application/ld+json'},
             agent: httpsAgent
         }
 

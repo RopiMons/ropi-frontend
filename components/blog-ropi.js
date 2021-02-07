@@ -1,8 +1,6 @@
 import React from "react";
 import {MDBIcon} from "mdbreact";
 
-import styles from '../layout/css/index-layout.module.css'
-
 /* **********************************************************
 Création d'un blog de nouvelles, avec
     - une nouvelle principale
@@ -14,14 +12,18 @@ export function BlogRopiPieceOfNewsMain(props) {
     return (
 
         <div className="col-lg-6">
-            <div className="card border-0 mb-4"><a href={props.lien}>
-                <img className="card-img-top"
-                     src={props.image}
-                     alt={props.imageAlt}/></a>
+            <div className="card border-0 mb-4">
+                <a href={props.lien}>
+                    <img
+                        className="card-img-top"
+                        src={props.image}
+                        alt={props.imageAlt}
+                    />
+                </a>
                 <div className="date-pos text-center p-3 bg-name-date">{props.auteur} {props.date}</div>
                 <h5 className="font-weight-medium mt-3"><a href={props.lien}
                                                            className="link text-decoration-none">{props.titre}</a></h5>
-                <p className="m-t-20"> {props.chapeau}  </p>
+                <p className="m-t-20">{props.chapeau}</p>
             </div>
         </div>
     )
@@ -29,18 +31,24 @@ export function BlogRopiPieceOfNewsMain(props) {
 
 export function BlogRopiPieceOfNewsSecondaries(props) {
     return (
-
         <div className="col-md-6">
             <div className="card border-0 mb-4">
-
-                <a href={props.lien}><img className="card-img-top"
-                                 src={props.image}
-                                 alt={props.imageAlt}/></a>
-                <div className="date-pos text-center p-3 bg-name-date"> {props.auteur} {props.date}
+                <a href={props.lien}>
+                    <img
+                        className="card-img-top"
+                        src={props.image}
+                        alt={props.imageAlt}
+                    />
+                </a>
+                <div className="date-pos text-center p-3 bg-name-date">
+                    {props.auteur} {props.date}
                 </div>
                 <h6 className="font-weight-medium mt-3">
-                    <a href={props.lien}
-                       className="link text-decoration-none">{props.titre}
+                    <a
+                        href={props.lien}
+                        className="link text-decoration-none"
+                    >
+                        {props.titre}
                     </a>
                 </h6>
             </div>
@@ -48,13 +56,11 @@ export function BlogRopiPieceOfNewsSecondaries(props) {
     )
 }
 
-export default function BlogRopi(props) {
+export default function BlogRopi() {
     return (
-
         <div className="col-md-12">
             <div className="blog-home3 py-xl-5">
                 <div className="container">
-
                     <div className="row py-5 justify-content-center">
                         <div className="col-md-8 text-center">
                             <h2 className="my-3">Des nouvelles du Ropi et des prestataires</h2>
@@ -64,7 +70,6 @@ export default function BlogRopi(props) {
                     </div>
 
                     <div className="row mt-4">
-
                         <BlogRopiPieceOfNewsMain
                             image={"https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg"}
                             imageAlt={"Mon Image"}
@@ -72,12 +77,19 @@ export default function BlogRopi(props) {
                             date={"SEPT 15, 2017"}
                             titre={"Ceci est mon titre"}
                             chapeau={"You can relay on our amazing features list and also our customer services will be great experience. Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
-                            lien={"https://example.com"}>
-                        </BlogRopiPieceOfNewsMain>
+                            lien={"https://example.com"}
+                        />
 
                         <div className="col-lg-6">
-
                             <div className="row">
+                                <BlogRopiPieceOfNewsSecondaries
+                                    image={"https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg"}
+                                    imageAlt={"Mon Image"}
+                                    auteur={"JOHN DOE"}
+                                    date={"SEPT 15, 2017"}
+                                    titre={"Ceci est mon titre"}
+                                    lien={"https://example.com"}
+                                />
 
                                 <BlogRopiPieceOfNewsSecondaries
                                     image={"https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg"}
@@ -85,8 +97,8 @@ export default function BlogRopi(props) {
                                     auteur={"JOHN DOE"}
                                     date={"SEPT 15, 2017"}
                                     titre={"Ceci est mon titre"}
-                                    lien={"https://example.com"}>
-                                </BlogRopiPieceOfNewsSecondaries>
+                                    lien={"https://example.com"}
+                                />
 
                                 <BlogRopiPieceOfNewsSecondaries
                                     image={"https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg"}
@@ -94,44 +106,26 @@ export default function BlogRopi(props) {
                                     auteur={"JOHN DOE"}
                                     date={"SEPT 15, 2017"}
                                     titre={"Ceci est mon titre"}
-                                    lien={"https://example.com"}>
-                                </BlogRopiPieceOfNewsSecondaries>
-
-                                <BlogRopiPieceOfNewsSecondaries
-                                    image={"https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg"}
-                                    imageAlt={"Mon Image"}
-                                    auteur={"JOHN DOE"}
-                                    date={"SEPT 15, 2017"}
-                                    titre={"Ceci est mon titre"}
-                                    lien={"https://example.com"}>
-                                </BlogRopiPieceOfNewsSecondaries>
-
+                                    lien={"https://example.com"}
+                                />
 
                                 {/*MORE NEWS*/}
                                 <div className="col-md-6">
                                     <div className="card text-center border-0 mb-4">
-                                        <a href="#"
-
-                                           className="link text-decoration-none">
-                                            <MDBIcon className={"text-center fa-newspaper"} size="8x"/>
-                                            {/*<i className="far fa-newspaper card-img-top more-news"></i>*/}
+                                        <a href="#" className="link text-decoration-none">
+                                            <MDBIcon icon={"text-center fa-newspaper"} size="8x"/>
                                         </a>
                                         <h6 className="font-weight-medium mt-3 text-center">
-                                            <a href="pages/index.js"
-                                               className="link text-decoration-none">
-                                                Afficher plus de nouvelles...</a></h6>
+                                            <a href="#" className="link text-decoration-none">Afficher plus de
+                                                nouvelles...</a>
+                                        </h6>
                                     </div>
                                 </div>
-
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     )
-
 }
