@@ -14,20 +14,23 @@ export default function BannerRopi(props){
                     <Row className="d-md-flex">
                         <Col>
                             <img className="img-fluid d-md-flex" src="/images/ropi_logo.png" style={{
-                                width: '134px',
-                                height: '46px',
-                                padding: '0px'
+                                padding: '0px'                                
                             }} />
+                            
+                      
+                            <img className="img-fluid" src="/images/eventail_billets3_rounded.png" />
+                
+                              
                         </Col>
                     </Row>
                 </Col>
                 <Col className={"d-none d-md-inline " + styles.citationCounters}>
                     <Row className={"flex-grow-0 flex-shrink-0 " + styles.counters} >
                         <Col>
-                            <Table size={"sm"} className={styles.tableDark} >
+                            <Table size={"lg"} className={styles.tableDark} >
                                 <thead className={"text-center "+styles.counterHeader}>
                                 <tr>
-                                    <th>Prestataires</th>
+                                    <th>Nos prestataires</th>
                                 </tr>
                                 </thead>
                                 <tbody className={styles.counterBody}>
@@ -38,7 +41,7 @@ export default function BannerRopi(props){
                             </Table>
                         </Col>
                         <Col>
-                            <Table size={"sm"} className={styles.tableDark} >
+                            <Table size={"lg"} className={styles.tableDark} >
                                 <thead className={"text-center "+styles.counterHeader}>
                                 <tr>
                                     <th>Comptoirs de change</th>
@@ -52,7 +55,7 @@ export default function BannerRopi(props){
                             </Table>
                         </Col>
                         <Col>
-                            <Table size={"sm"} className={styles.tableDark} >
+                            <Table size={"lg"} className={styles.tableDark} >
                                 <thead className={"text-center " + styles.counterHeader}>
                                 <tr>
                                     <th>Ropi en circulation</th>
@@ -65,29 +68,16 @@ export default function BannerRopi(props){
                                 </tbody>
                             </Table>
                         </Col>
-                        <Col>
-                            <Table size={"sm"} className={styles.tableDark} >
-                                <thead className={"text-center " + styles.counterHeader}>
-                                <tr>
-                                    <th>Année de mise en circulation</th>
-                                </tr>
-                                </thead>
-                                <tbody className={styles.counterBody}>
-                                <tr>
-                                    <td>2009</td>
-                                </tr>
-                                </tbody>
-                            </Table>
-                        </Col>
+                        
                     </Row>
                 </Col>
-                <Col xs={6} md={3} className={styles.eventail}>
-                    <img className="img-fluid" src="/images/eventail_billets3_rounded.png" />
-                </Col>
+               
             </Row>
             <Row>
                 <Col style={{textAlign: 'justify', width: '500px'}}>
-                    <h1 className={styles.subtitle +" font-weight-normal"} style={{fontSize: '23px', textAlign: 'right'}}>La monnaie citoyenne montoise</h1>
+                    <h1 className={styles.subtitle +" font-weight-normal"} style={{fontSize: '23px', textAlign: 'left'}}>
+                        La monnaie citoyenne montoise
+                        </h1>
                 </Col>
             </Row>
         </Container>

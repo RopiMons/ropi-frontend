@@ -1,5 +1,5 @@
 .paragrapheTitle {
-    background: linear-gradient(to bottom,#ffffff 0%, #eeedfb 40%);
+    background: linear-gradient(to bottom, #ffffff 0%, #ecf5f4 100%);
     padding: 1rem;
     color: #737373;
     justify-content: center;
@@ -8,7 +8,7 @@
 
 .paragrapheContent {
     color: #525252;
-    background: #eeedfb;
+    background: #ecf5f4;
     padding-left: 15px;
     padding-right: 15px;
 }
