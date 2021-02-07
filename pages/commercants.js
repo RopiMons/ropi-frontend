@@ -1,13 +1,10 @@
 import React from "react";
 import {Col, Container, Row} from "react-bootstrap";
-
 import Carte2Col from "../components/carte2Col";
 import Carte4Col, {CarteBoutonListeCommerces} from "../components/carte4Col";
-import dynamic from "next/dynamic";
 import ApiCaller from "../components/services/ApiCaller";
 import Error from "next/error";
-
-const MapWithNoSSR = dynamic(() => import('./../components/openStreetMap'),{ssr:false});
+import dynamic from "next/dynamic";
 
 const mapDivStyle={
     height: "100 px",
@@ -50,9 +47,16 @@ const AddCommerce = () => {
 }
 
 export default function Commercants({status, commerces}) {
-    if(status!==200){
-        return <Error statusCode={status} />;
+    if (status !== 200) {
+        return <Error statusCode={status}/>;
     }
+
+    const Map = React.useMemo(() => dynamic(
+        () => import('../components/map/commercant-map'), // replace '@components/map' with your component's location
+        {
+            loading: () => <p>A map is loading</p>,
+            ssr: false // This line is important. It's what prevents server-side render
+        }), []);
 
     return (
         <>
@@ -88,7 +92,7 @@ export default function Commercants({status, commerces}) {
                         <Row className={"justify-content-between align-items-center d-md-flex"}>
                             <Col style={myMapColStyle}>
                                 <div className="embed-responsive " style ={mapDivStyle}>
-                                    <MapWithNoSSR/>
+                                    <Map commerces={commerces}/>
                                 </div>
                             </Col>
                         </Row>
@@ -105,4 +109,5 @@ export default function Commercants({status, commerces}) {
             </Container>
         </>
     )
+
 }
