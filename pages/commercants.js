@@ -4,9 +4,6 @@ import Carte2Col from "../components/carte2Col";
 import Carte4Col, {CarteBoutonListeCommerces} from "../components/carte4Col";
 import ApiCaller from "../components/services/ApiCaller";
 import Error from "next/error";
-import { element } from "prop-types";
-
-const MapWithNoSSR = dynamic(() => import('./../components/openStreetMap'),{ssr:false});
 import dynamic from "next/dynamic";
 
 const mapDivStyle={
@@ -49,67 +46,11 @@ const AddCommerce = () => {
     )
 }
 
-const doFilter = (setCommerceFn, commerces,setFilters, filters, evt) => {
-
-    // Récupérer filtres à choix multiples et le mettre dans un array
-    switch(evt.target.id){
-        case "codePostal":
-            let cp = [];
-            let codePostauxSelectionnes = [...evt.target.selectedOptions];   // TODO Fab : utiliser getElementbyId
-            codePostauxSelectionnes.forEach(element => cp.push(element.value) );   // Transforme le htmlCollection en array
-            filters.codePostal = cp;
-        console.log(cp);
-        break;
-        case "typeCommerce":
-            //todo
-        break;
-    }
-
-    setFilters(filters);
-
-    // TODO : Continuer à coder ici
-
-    // Filtre la liste des commerçants sur base requête utilisateur.
-    var filteredCommerces;
-
-    var chkComptoir = document.getElementById('comptoirChange');
-    var codePostal = document.getElementById('codePostal');
-    var typeCommerce = document.getElementById('typeCommerce');
-
-    if (chkComptoir.checked)
-    {
-        filteredCommerces = commerces.filter(commerces => commerces.is_comptoire)
-        console.log("Donner les comptoirs")
-    } else {
-        filteredCommerces = commerces
-        console.log("Donner les NON-comptoirs")
-    }
-
-    console.log(codePostal.value)
-    console.log(typeCommerce)
-
-    //console.log(filteredCommerces[0].adresses[0].ville.code_postal)
-
-    setCommerceFn(filteredCommerces);
-
-}
-
 export default function Commercants({status, commerces}) {
 
     if(status!==200){
         return <Error statusCode={status} />;
     }
-
-    // Utilisation d'un hook-state : https://fr.reactjs.org/docs/hooks-state.html
-    let [Filteredcommerces, setCommerces] = React.useState(commerces);
-
-    // TODO Fab : je pense que le hooks n'est pas nécessaire si j'utilise le getElementById dans doFilter
-    let [filters, setFilters] = React.useState({
-        nom: null,
-        codePostal: [],
-        isComptoire: null,
-        type: null
-    })
 
     const Map = React.useMemo(() => dynamic(
         () => import('../components/map/commercant-map'), // replace '@components/map' with your component's location
@@ -136,13 +77,17 @@ export default function Commercants({status, commerces}) {
                         </label>
                         <label>
                             <h5>Comptoir de change &nbsp;
-                            <input type="checkbox" id="comptoirChange" name="comptoirChange"
-                                onChange={(evt) => doFilter(setCommerces, commerces, evt)}></input></h5>
+                                <input
+                                    type="checkbox"
+                                    id="comptoirChange"
+                                    name="comptoirChange"
+                                    onChange={(evt) => doFilter(setCommerces, commerces, evt)}/>
+                            </h5>
                         </label>
                         <label>
                             <h5>Code postal</h5>
                             <select multiple={"multiple"} size="4" id="codePostal"
-                                onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}>
+                                    onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}>
 
                                 <option value="tous">Tous</option>
                                 <option value="7020">7020 NIMY</option>
@@ -160,7 +105,7 @@ export default function Commercants({status, commerces}) {
                         <label>
                             <h5>Types de commerce</h5>
                             <select multiple size="4" id="typeCommerce"
-                              onChange={(evt) => doFilter(setCommerces, commerces, evt)}>
+                                    onChange={(evt) => doFilter(setCommerces, commerces, evt)}>
                                 <option value="">Tous</option>
                                 <option value="1">Alimentation</option>
                                 <option value="2">Habitat</option>
@@ -181,8 +126,8 @@ export default function Commercants({status, commerces}) {
                     <>
                         <Row className={"justify-content-between align-items-center d-md-flex"}>
                             <Col style={myMapColStyle}>
-                                <div className="embed-responsive" style ={mapDivStyle}>
-                                    <MapWithNoSSR/>
+                                <div className="embed-responsive " style={mapDivStyle}>
+                                    <Map commerces={commerces}/>
                                 </div>
                             </Col>
                         </Row>
