@@ -128,15 +128,15 @@ export function CarteBoutonAccueil(props) {
     )
 }
 
-export function CarteBoutonListeCommerces(props) {
+export function CarteBoutonListeCommerces({commerces}) {
     return (
         <>
-            {props.commerces.map((monCommerce, key) => {
+            {commerces.map((monCommerce, key) => {
                 return (
                     <Carte4Col
                         key={key}
                         texte={monCommerce.nom}
-                        comptoirChange={monCommerce.isComptoire}
+                        comptoirChange={monCommerce.isComptoir}
                         icone={"store"}        // Icone ou logo.
                         logo={monCommerce.logo} // ... si icone vide alors logo (image) est utilisé
 
@@ -165,7 +165,7 @@ export function CarteBoutonListeCommerces(props) {
 CarteBoutonListeCommerces.propTypes = {
     commerces: PropTypes.arrayOf(PropTypes.shape({
         nom: PropTypes.string.isRequired,
-        isComptoire: PropTypes.bool.isRequired,
+        isComptoir: PropTypes.bool.isRequired,
         logo: PropTypes.string.isRequired,
         bgImage: PropTypes.string.isRequired,
         textColor: color.isRequired,

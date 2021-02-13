@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import {Marker, Popup, TileLayer} from 'react-leaflet';
 
 
 export default class MyMap extends Component {
