@@ -5,17 +5,15 @@ import Error from "next/error";
 import PropTypes from 'prop-types';
 
 
-
 export async function getStaticProps({params}) {
 
-    let status, isOk, data = null;
-
+    let status = null, isOk = null, data = null;
     await ApiCaller.getPage(params.slug).then(json => {
             status = json.status;
-            isOk = 200 === json.status;
-            if(isOk){
-                data = json.json
-            }
+        isOk = 200 === status;
+        if (isOk) {
+            data = json.json
+        }
         }
     );
 
@@ -33,8 +31,8 @@ export async function getStaticProps({params}) {
 export async function getStaticPaths() {
     return {
         paths: [
-            {params: {slug: 'fonctionnement'}},
-            {params: {slug: 'ecouler-ses-ropis'}}
+            {params: {slug: '7'}},
+            {params: {slug: '8'}}
         ],
         fallback: true
     }
@@ -64,7 +62,7 @@ CMSPage.propTypes = {
     isOk: PropTypes.bool.isRequired,
     status: PropTypes.number.isRequired,
     page: PropTypes.shape({
-        titre_menu: PropTypes.string.isRequired,
+        titreMenu: PropTypes.string.isRequired,
         paragraphes: PropTypes.arrayOf(PropTypes.shape({
             titre: PropTypes.string.isRequired,
             text: PropTypes.string.isRequired

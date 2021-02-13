@@ -1,30 +1,26 @@
-import Head from "next/head";;
+import Head from "next/head";
 import React from "react";
-import  {Row, Container, Col, Table} from "react-bootstrap";
-import styles from './css/index-layout.module.css';
+import {Row, Container, Col, Table}  from "react-bootstrap";
 import Menu from "./menu";
 import BannerRopi from "./banner-ropi";
 import FooterRopi from "./footer-ropi";
+import styles from './css/index-layout.module.css';
 import { View, Image, StyleSheet } from 'react-native';
 
 export default function IndexLayout({children, menu}){
     return(
-        <>
-        
+        <div>
             <Head>
                 <title>Le Ropi à Mons</title>
-                <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />       
+                <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
             </Head>
-            <body>
-
             <Container>
-                <Image  style={{ height: 300 }} resizeMode="contain" source="/images/banner01.png"/>  
+                <Image  style={{ height: 300 }} resizeMode="contain" source="/images/banner01.png"/>
                 <BannerRopi />
                 <Menu data={menu} />
                 {children}
                 <FooterRopi />
             </Container>
-            </body>
-        </>
+        </div>
     )
 }

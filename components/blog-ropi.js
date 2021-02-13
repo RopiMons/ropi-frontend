@@ -14,25 +14,18 @@ Création d'un blog de nouvelles, avec
 export function BlogRopiPieceOfNewsMain(props) {
     return (
 
-        <>        
-            <div className="col-mb-6">
-                            
-                <div className="card border-0 mb-4">
-                    
-                    <a href={props.lien}>
-                        
-                         <img className="card-img-top"
-                            src={props.image}
-                            alt={props.imageAlt} /> 
-                    </a>
-                    <div className="date-pos text-center p-3 bg-name-date">{props.auteur} {props.date}</div>
-                    <h5 className="font-weight-medium mt-3"><a href={props.lien}
-                        className="link text-decoration-none">{props.titre}</a></h5>
-                    <p className="m-t-20"> {props.chapeau}  </p>
-                </div>
+        <div className="col-mb-6">
+            <div className="card border-0 mb-4">
+                <a href={props.lien}>
+                <img className="card-img-top"
+                     src={props.image}
+                     alt={props.imageAlt}/></a>
+                <div className="date-pos text-center p-3 bg-name-date">{props.auteur} {props.date}</div>
+                <h5 className="font-weight-medium mt-3"><a href={props.lien}
+                                                           className="link text-decoration-none">{props.titre}</a></h5>
+                <p className="m-t-20"> {props.chapeau}  </p>
             </div>
-
-        </>
+        </div>
     )
 }
 
@@ -41,8 +34,8 @@ export function BlogRopiPieceOfNewsSecondaries(props) {
 
         <div className="col-md-6">
             <div className="card border-0 mb-4">
-
-                <a href={props.lien}><img className="card-img-top"
+                <a href={props.lien}>
+                    <img className="card-img-top"
                                  src={props.image}
                                  alt={props.imageAlt}/></a>
                 <div className="date-pos text-center p-3 bg-name-date"> {props.auteur} {props.date}
@@ -58,7 +51,6 @@ export function BlogRopiPieceOfNewsSecondaries(props) {
 }
 
 export default function BlogRopi(props) {
-
     return (
 
         <div className="col-md-12">
@@ -77,7 +69,7 @@ export default function BlogRopi(props) {
                         <FacebookLatestNews messageId={props.messageId} />
                     </div>
 
-                    <div className="row mt-4">                                         
+                    <div className="row mt-4">
 
                         <BlogRopiPieceOfNewsMain
                             image={"https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/blog/blog-home/img5.jpg"}
@@ -86,8 +78,8 @@ export default function BlogRopi(props) {
                             date={"SEPT 15, 2017"}
                             titre={"Ceci est mon titre"}
                             chapeau={"You can relay on our amazing features list and also our customer services will be great experience. Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
-                            lien={"https://example.com"}>
-                        </BlogRopiPieceOfNewsMain>
+                            lien={"https://example.com"}
+                        />
 
                         <div className="col-lg-6">
 

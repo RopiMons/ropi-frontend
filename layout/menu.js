@@ -14,26 +14,31 @@ export default function Menu({data}){
                         <Nav className="mr-auto">
                             {data && data.map((categorie,key)=>{
                                 return(
-                                    <>
-                                        { categorie.pages.length > 1 ? (
-                                            <Nav.Item key={key} className={"d-flex flex-row align-items-center " + styles.navItem} role={"presentation"}>
-                                                {categorie.fa_icone && (<i className={categorie.fa_icone} />)}
+                                    <div key={key}>
+                                        {categorie.pages.length > 1 ? (
+                                            <Nav.Item className={"d-flex flex-row align-items-center " + styles.navItem}
+                                                      role={"presentation"}>
+                                                {categorie.faIcone && (<i className={categorie.faIcone}/>)}
                                                 <NavDropdown id={key} title={categorie.nom}>
-                                                    {categorie.pages.map((page,key) => {
-                                                        return(
-                                                            <Link key={key} href={`/page/${encodeURIComponent(page.slug)}`} passHref><NavDropdown.Item as={"a"}>{page.titre_menu}</NavDropdown.Item></Link>
+                                                    {categorie.pages.map((page, key) => {
+                                                        return (
+                                                            <Link key={key}
+                                                                  href={`/page/${encodeURIComponent(page.id)}`}
+                                                                  passHref><NavDropdown.Item
+                                                                as={"a"}>{page.titreMenu}</NavDropdown.Item></Link>
                                                         )
                                                     })}
                                                 </NavDropdown>
                                             </Nav.Item>
 
-                                        ):(
-                                            <Nav.Item key={key} className={"d-flex flex-row align-items-center " + styles.navItem} role={"presentation"}>
-                                                {categorie.fa_icone && (<i className={categorie.fa_icone} />)}
+                                        ) : (
+                                            <Nav.Item className={"d-flex flex-row align-items-center " + styles.navItem}
+                                                      role={"presentation"}>
+                                                {categorie.faIcone && (<i className={categorie.faIcone}/>)}
                                                 <Nav.Link as={Link} href="#">{categorie.nom}</Nav.Link>
                                             </Nav.Item>
                                         )}
-                                    </>
+                                    </div>
 
                                 )
                             })}

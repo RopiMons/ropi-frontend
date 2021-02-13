@@ -1,14 +1,13 @@
 import React from "react";
-import {Container, Row, Col} from "react-bootstrap";
-
+import {Col, Container, Row} from "react-bootstrap";
 import Carte2Col from "../components/carte2Col";
 import Carte4Col, {CarteBoutonListeCommerces} from "../components/carte4Col";
-import dynamic from "next/dynamic";
 import ApiCaller from "../components/services/ApiCaller";
 import Error from "next/error";
 import { element } from "prop-types";
 
 const MapWithNoSSR = dynamic(() => import('./../components/openStreetMap'),{ssr:false});
+import dynamic from "next/dynamic";
 
 const mapDivStyle={
     height: "100 px",
@@ -18,38 +17,41 @@ const mapDivStyle={
 };
 const myMapColStyle = {};
 
-export async function getStaticProps(context) {
-    let status, data = null;
+export async function getStaticProps() {
+    let status = null, data = null;
     await ApiCaller.getCommerces().then(response => {
         status = response.status;
-        if(status === 200){
-            data = response.json;
+        if (status === 200 && response.json && response.json['hydra:member']) {
+            data = response.json['hydra:member'];
         }
     });
     return {
         props: {
-            status : status,
+            status: status,
             commerces: data
-        }
+        },
+        revalidate: 3600
     }
 }
-const AddCommerce = ()=>{
-    return(
-        <Carte4Col texte="Ajouter mon commerce"
-                   icone='plus'
-                   logo=''
-                   boutonTextColor={'#ffffff'}
-                   boutonBackgroundColor={'#7f7cff'}
-                   boutonBackgroundImage=''
-                   boutonText1={'Ajouter mon commerce'}
-                   boutonLienWWW1={"internal_link_ajouter_commerce"}>
-        </Carte4Col>
+
+const AddCommerce = () => {
+    return (
+        <Carte4Col
+            texte="Ajouter mon commerce"
+            icone='plus'
+            logo=''
+            boutonTextColor={'#ffffff'}
+            boutonBackgroundColor={'#7f7cff'}
+            boutonBackgroundImage=''
+            boutonText1={'Ajouter mon commerce'}
+            boutonLienWWW1={"internal_link_ajouter_commerce"}
+        />
     )
 }
 
-const doFilter = (setCommerceFn, commerces,setFilters, filters, evt) => {   
+const doFilter = (setCommerceFn, commerces,setFilters, filters, evt) => {
 
-    // Récupérer filtres à choix multiples et le mettre dans un array 
+    // Récupérer filtres à choix multiples et le mettre dans un array
     switch(evt.target.id){
         case "codePostal":
             let cp = [];
@@ -59,7 +61,7 @@ const doFilter = (setCommerceFn, commerces,setFilters, filters, evt) => {
         console.log(cp);
         break;
         case "typeCommerce":
-            //todo    
+            //todo
         break;
     }
 
@@ -69,7 +71,7 @@ const doFilter = (setCommerceFn, commerces,setFilters, filters, evt) => {
 
     // Filtre la liste des commerçants sur base requête utilisateur.
     var filteredCommerces;
-    
+
     var chkComptoir = document.getElementById('comptoirChange');
     var codePostal = document.getElementById('codePostal');
     var typeCommerce = document.getElementById('typeCommerce');
@@ -89,10 +91,14 @@ const doFilter = (setCommerceFn, commerces,setFilters, filters, evt) => {
     //console.log(filteredCommerces[0].adresses[0].ville.code_postal)
 
     setCommerceFn(filteredCommerces);
-     
+
 }
 
 export default function Commercants({status, commerces}) {
+
+    if(status!==200){
+        return <Error statusCode={status} />;
+    }
 
     // Utilisation d'un hook-state : https://fr.reactjs.org/docs/hooks-state.html
     let [Filteredcommerces, setCommerces] = React.useState(commerces);
@@ -105,10 +111,12 @@ export default function Commercants({status, commerces}) {
         type: null
     })
 
-
-    if(status!==200){
-        return <Error statusCode={status} />;
-    }
+    const Map = React.useMemo(() => dynamic(
+        () => import('../components/map/commercant-map'), // replace '@components/map' with your component's location
+        {
+            loading: () => <p>A map is loading</p>,
+            ssr: false // This line is important. It's what prevents server-side render
+        }), []);
 
     return (
         <>
@@ -128,12 +136,12 @@ export default function Commercants({status, commerces}) {
                         </label>
                         <label>
                             <h5>Comptoir de change &nbsp;
-                            <input type="checkbox" id="comptoirChange" name="comptoirChange" 
+                            <input type="checkbox" id="comptoirChange" name="comptoirChange"
                                 onChange={(evt) => doFilter(setCommerces, commerces, evt)}></input></h5>
                         </label>
                         <label>
-                            <h5>Code postal</h5>                        
-                            <select multiple={"multiple"} size="4" id="codePostal" 
+                            <h5>Code postal</h5>
+                            <select multiple={"multiple"} size="4" id="codePostal"
                                 onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}>
 
                                 <option value="tous">Tous</option>
@@ -144,13 +152,13 @@ export default function Commercants({status, commerces}) {
                                 <option value="7011">7011 Ghlin</option>
                                 <option value="7022">7022 Hyon</option>
                                 <option value="7034">7034 Mons</option>
-                                <option value="7050">7050 Jurbise / Soignies</option>    
-                            </select>           
+                                <option value="7050">7050 Jurbise / Soignies</option>
+                            </select>
 
 
                         </label>
                         <label>
-                            <h5>Types de commerce</h5>                            
+                            <h5>Types de commerce</h5>
                             <select multiple size="4" id="typeCommerce"
                               onChange={(evt) => doFilter(setCommerces, commerces, evt)}>
                                 <option value="">Tous</option>
@@ -160,9 +168,9 @@ export default function Commercants({status, commerces}) {
                                 <option value="4">Enseignement et culture</option>
                                 <option value="5">Soin à la nature et à la terre</option>
                                 <option value="6">Outils et technologies</option>
-                                <option value="7">Finance et économie</option>    
-                                <option value="8">Foncier et gouvernance</option>    
-                            </select>  
+                                <option value="7">Finance et économie</option>
+                                <option value="8">Foncier et gouvernance</option>
+                            </select>
                         </label>
                         <br />
                         <input type="submit" value="Filtrer"/>
@@ -189,8 +197,8 @@ export default function Commercants({status, commerces}) {
                 <AddCommerce />
                 <CarteBoutonListeCommerces commerces={Filteredcommerces}  />
                 <AddCommerce />
-            </Container> 
-            
+            </Container>
+
         </>
     )
 
