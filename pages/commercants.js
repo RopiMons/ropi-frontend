@@ -5,6 +5,11 @@ import Carte4Col, {CarteBoutonListeCommerces} from "../components/carte4Col";
 import ApiCaller from "../components/services/ApiCaller";
 import Error from "next/error";
 import dynamic from "next/dynamic";
+import { element } from "prop-types";
+
+
+
+const MapWithNoSSR = dynamic(() => import('./../components/openStreetMap'),{ssr:false});
 
 const mapDivStyle={
     height: "100 px",
