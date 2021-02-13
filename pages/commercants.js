@@ -8,6 +8,8 @@ import ApiCaller from "../components/services/ApiCaller";
 import Error from "next/error";
 import { element } from "prop-types";
 
+
+
 const MapWithNoSSR = dynamic(() => import('./../components/openStreetMap'),{ssr:false});
 
 const mapDivStyle={
@@ -49,45 +51,83 @@ const AddCommerce = ()=>{
 
 const doFilter = (setCommerceFn, commerces,setFilters, filters, evt) => {   
 
-    // Récupérer filtres à choix multiples et le mettre dans un array 
+    //console.log("DEBUG : ", commerces)
+    // Récupérer filtres à choix multiples et les conserver
     switch(evt.target.id){
         case "codePostal":
-            let cp = [];
-            let codePostauxSelectionnes = [...evt.target.selectedOptions];   // TODO Fab : utiliser getElementbyId
-            codePostauxSelectionnes.forEach(element => cp.push(element.value) );   // Transforme le htmlCollection en array
-            filters.codePostal = cp;
-        console.log(cp);
+            let codePostauxSelectiones = [];
+            [...evt.target.selectedOptions].forEach(element => codePostauxSelectiones.push(element.value) );
+            filters.codesPostaux = codePostauxSelectiones;
+            console.log("DEBUG: ", codePostauxSelectiones);
         break;
-        case "typeCommerce":
-            //todo    
+        case "typeActivite":
+            let typeActiviteSelectionees = [];
+            [...evt.target.selectedOptions].forEach(element => typeActiviteSelectionees.push(element.value) );
+            filters.typesActivites = typeActiviteSelectionees;            
+        break;
+        case "isComptoir":
+            filters.isComptoir = evt.target.checked;
+            //console.log("COMPOIR values ?: ", evt.target.checked)
+        break;
+        case "description":
+            filters.description = evt.target.value;
+            console.log(filters.description)
         break;
     }
 
-    setFilters(filters);
+    //console.log("FILTERS: ", filters);
+  
+    setFilters(filters);  // update hook-state
 
-    // TODO : Continuer à coder ici
+    var filteredCommerces = [];
 
-    // Filtre la liste des commerçants sur base requête utilisateur.
-    var filteredCommerces;
-    
-    var chkComptoir = document.getElementById('comptoirChange');
-    var codePostal = document.getElementById('codePostal');
-    var typeCommerce = document.getElementById('typeCommerce');
-
-    if (chkComptoir.checked)
+    // First filter on comptoir as it may eliminate a lot of commerces and makes the rest run faster.
+    var preFilteredCommerces = [];
+    if (filters.isComptoir)
     {
-        filteredCommerces = commerces.filter(commerces => commerces.is_comptoire)
-        console.log("Donner les comptoirs")
+        preFilteredCommerces = commerces.filter(commerces => commerces.is_comptoire)  // is_comptoire vient de l'api  (TODO le "e" à la fin va etre supprimé dans prochaine version)
+        console.log("DEBUG Compotir", preFilteredCommerces)
     } else {
-        filteredCommerces = commerces
-        console.log("Donner les NON-comptoirs")
+        preFilteredCommerces = commerces;
     }
 
-    console.log(codePostal.value)
-    console.log(typeCommerce)
+    // Vérifie si chaque commerce est dans les conditions du filtre
+    preFilteredCommerces.forEach(commerce => {
 
-    //console.log(filteredCommerces[0].adresses[0].ville.code_postal)
+        // Filtrer sur les codes postaux (choix multiples)
+        var addCommerceOnCodePostal = false;
+        
+        filters.codesPostaux.forEach(selectedCodePostal => {
+            if(selectedCodePostal === "tous")  {
+                addCommerceOnCodePostal = true; 
+            } else if(selectedCodePostal === commerce.adresses[0].ville.code_postal) {
+                addCommerceOnCodePostal = true;
+            }
+        })         
 
+        // Filtrer sur le type d'activité (choix multiples)
+        var addCommerceOnActivite = false;    
+        filters.typesActivites.forEach(selectedActivite => {
+            if(selectedActivite === "tous")  {
+                addCommerceOnActivite = true; 
+            } else if(selectedActivite === commerce.activite) {    // activite n'exite pas encore dans API
+                addCommerceOnActivite = true;
+            }
+        })
+        
+        // filtrer sur la description libre
+        var addCommerceDescription = false;
+        var objects = JSON.stringify(commerce)
+        if(objects.indexOf(filters.description)!=-1) {
+            addCommerceDescription = true;
+         }
+       
+        // Combine filters 
+        if(addCommerceOnCodePostal && addCommerceOnActivite && addCommerceDescription) {
+            filteredCommerces.push(commerce)
+        }                    
+    })
+    
     setCommerceFn(filteredCommerces);
      
 }
@@ -95,14 +135,18 @@ const doFilter = (setCommerceFn, commerces,setFilters, filters, evt) => {
 export default function Commercants({status, commerces}) {
 
     // Utilisation d'un hook-state : https://fr.reactjs.org/docs/hooks-state.html
+    // Conserve la liste des commerçants filtrés et définition de la fonction pour mettre à jour.
+    // Par défaut, la liste complète est affichée (dans le futur si bcp de commerçant, 
+    // il faudrait peut-être n'afficher que les plus récents) 
     let [Filteredcommerces, setCommerces] = React.useState(commerces);
 
     // TODO Fab : je pense que le hooks n'est pas nécessaire si j'utilise le getElementById dans doFilter
+    // conserve la liste des paramètres sélectionnés comme filtre, clic après clic.
     let [filters, setFilters] = React.useState({
-        nom: null,
-        codePostal: [],
-        isComptoire: null,
-        type: null
+        description: null,
+        codesPostaux: ["tous"],
+        isComptoir: false,     // if false, will show commerces including comptoir de change. If tru only show comptoirs de change
+        typesActivites: ["tous"]
     })
 
 
@@ -123,20 +167,21 @@ export default function Commercants({status, commerces}) {
                         <h4>Filtrez les prestataires selon différents critères</h4>
                         <br />
                         <label>
-                            <h5>Nom et description</h5>
-                            <input type="text" name="freeText"/>
+                            <h5>Nom et description
+                            <input type="text" id="description"
+                                onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}></input></h5>
                         </label>
                         <label>
                             <h5>Comptoir de change &nbsp;
-                            <input type="checkbox" id="comptoirChange" name="comptoirChange" 
-                                onChange={(evt) => doFilter(setCommerces, commerces, evt)}></input></h5>
+                            <input type="checkbox" id="isComptoir"  
+                                onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}></input></h5>
                         </label>
                         <label>
                             <h5>Code postal</h5>                        
-                            <select multiple={"multiple"} size="4" id="codePostal" 
+                            <select multiple={"multiple"} size="4" id="codePostal"
                                 onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}>
 
-                                <option value="tous">Tous</option>
+                                <option value="tous" selected>Tous</option>
                                 <option value="7020">7020 NIMY</option>
                                 <option value="7000">7000 Mons</option>
                                 <option value="7012">7012 Jemappes</option>
@@ -151,9 +196,9 @@ export default function Commercants({status, commerces}) {
                         </label>
                         <label>
                             <h5>Types de commerce</h5>                            
-                            <select multiple size="4" id="typeCommerce"
-                              onChange={(evt) => doFilter(setCommerces, commerces, evt)}>
-                                <option value="">Tous</option>
+                            <select multiple size="4" id="typeActivite"
+                              onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}>
+                                <option value="tous"  selected>Tous</option>
                                 <option value="1">Alimentation</option>
                                 <option value="2">Habitat</option>
                                 <option value="3">Santé et bien être</option>
@@ -184,7 +229,7 @@ export default function Commercants({status, commerces}) {
                 }
             />
 
-            {/******  Affiche la liste des commerces  ********/}
+            {/******  Affiche la liste des commerces en ajouter avant et après la liste une carte spéciale pour ajouter un commerce  ********/}
             <Container className="row d-flex flex-row" id="actions">
                 <AddCommerce />
                 <CarteBoutonListeCommerces commerces={Filteredcommerces}  />
