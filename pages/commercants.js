@@ -108,9 +108,12 @@ const doFilter = (setCommerceFn, commerces, setFilters, filters, evt) => {
         })
 
         // filtrer sur la description libre
+        // Le nom des field est inclu dans la recherche, donc il va enfait trouver 'trop',
+        // donc pas idéal mais a le mérite d'être simple à coder ;-)
+       
         var addCommerceDescription = false;
-        var objects = JSON.stringify(commerce)
-        if (objects.indexOf(filters.description) !== -1) {
+        var objects = JSON.stringify(commerce).toUpperCase();
+        if (objects.indexOf(filters.description.toUpperCase()) !== -1) {
             addCommerceDescription = true;
         }
 
@@ -132,10 +135,9 @@ export default function Commercants({status, commerces}) {
     // il faudrait peut-être n'afficher que les plus récents)
     let [filteredCommerces, setCommerces] = React.useState(commerces);
 
-    // TODO Fab : je pense que le hooks n'est pas nécessaire si j'utilise le getElementById dans doFilter
     // conserve la liste des paramètres sélectionnés comme filtre, clic après clic.
     let [filters, setFilters] = React.useState({
-        description: null,
+        description: "",
         codesPostaux: ["tous"],
         isComptoir: false,     // if false, will show commerces including comptoir de change. If tru only show comptoirs de change
         typesActivites: ["tous"]
@@ -161,12 +163,12 @@ export default function Commercants({status, commerces}) {
 
             <Carte2Col
                 carteGauche={
-                    <form>
+                    <>
                         <h4>Filtrez les prestataires selon différents critères</h4>
                         <br/>
                         <label>
                             <h5>Nom et description
-                                <input type="text" id="description"
+                                <input type="text" id="description" 
                                        onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}/>
                             </h5>
                         </label>
@@ -215,8 +217,8 @@ export default function Commercants({status, commerces}) {
                             </select>
                         </label>
                         <br/>
-                        <input type="submit" value="Filtrer"/>
-                    </form>
+                       
+                    </>
                 }
 
                 carteDroite={
