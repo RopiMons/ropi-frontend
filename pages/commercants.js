@@ -1,10 +1,11 @@
 import React from "react";
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Container, Row, Jumbotron} from "react-bootstrap";
 import Carte2Col from "../components/carte2Col";
 import Carte4Col, {CarteBoutonListeCommerces} from "../components/carte4Col";
 import ApiCaller from "../components/services/ApiCaller";
 import Error from "next/error";
 import dynamic from "next/dynamic";
+
 
 const mapDivStyle={
     height: "100 px",
@@ -128,6 +129,12 @@ const doFilter = (setCommerceFn, commerces, setFilters, filters, evt) => {
 }
 
 export default function Commercants({status, commerces}) {
+    const narrowJumbo = {
+        padding: 0,
+        //maxHeight: 100,
+        //width: 'auto',
+        //height: 100,
+    };
 
     // Utilisation d'un hook-state : https://fr.reactjs.org/docs/hooks-state.html
     // Conserve la liste des commerçants filtrés et définition de la fonction pour mettre à jour.
@@ -154,6 +161,8 @@ export default function Commercants({status, commerces}) {
             ssr: false // This line is important. It's what prevents server-side render
         }), []);
 
+        
+
     return (
         <>
             <div className="container py-xl-5" id="passez-action">
@@ -161,62 +170,10 @@ export default function Commercants({status, commerces}) {
                 <h4 className="text-center subtitle font-weight-normal">Commerçants, prestataires et associations </h4>
             </div>
 
-            <Carte2Col
+            <Carte2Col style={narrowJumbo}
                 carteGauche={
                     <>
-                        <h4>Filtrez les prestataires selon différents critères</h4>
-                        <br/>
-                        <label>
-                            <h5>Nom et description
-                                <input type="text" id="description" 
-                                       onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}/>
-                            </h5>
-                        </label>
-                        <label>
-                            <h5>Comptoir de change &nbsp;
-                                <input type="checkbox" id="isComptoir"
-                                       onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}/>
-                            </h5>
-                        </label>
-                        <label>
-                            <h5>Code postal</h5>
-                            <select
-                                multiple={"multiple"}
-                                size={4}
-                                id="codePostal"
-                                onChange={(evt) => {
-                                    doFilter(setCommerces, commerces, setFilters, filters, evt)
-                                }}
-                            >
-                                <option value="tous" selected>Tous</option>
-                                <option value="7020">7020 NIMY</option>
-                                <option value="7000">7000 Mons</option>
-                                <option value="7012">7012 Jemappes</option>
-                                <option value="7021">7021 Havré</option>
-                                <option value="7011">7011 Ghlin</option>
-                                <option value="7022">7022 Hyon</option>
-                                <option value="7034">7034 Mons</option>
-                                <option value="7050">7050 Jurbise / Soignies</option>
-                            </select>
-
-
-                        </label>
-                        <label>
-                            <h5>Types de commerce</h5>
-                            <select multiple size="4" id="typeActivite"
-                                    onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}>
-                                <option value="tous" selected>Tous</option>
-                                <option value="1">Alimentation</option>
-                                <option value="2">Habitat</option>
-                                <option value="3">Santé et bien être</option>
-                                <option value="4">Enseignement et culture</option>
-                                <option value="5">Soin à la nature et à la terre</option>
-                                <option value="6">Outils et technologies</option>
-                                <option value="7">Finance et économie</option>
-                                <option value="8">Foncier et gouvernance</option>
-                            </select>
-                        </label>
-                        <br/>
+                       <h4>Cliquez sur la carte et aidez-vous des filtres ci-dessous pour rechercher un commerce !</h4>
                        
                     </>
                 }
@@ -235,6 +192,89 @@ export default function Commercants({status, commerces}) {
                     </>
                 }
             />
+
+            {/* **********************************
+                *****     Bar des filtres  *******
+            ***************************************/}
+            <Jumbotron className=" " id="valeurs" style={narrowJumbo}>
+                <Row className="">
+                                                
+                <Col className="col-sm-6 col-md-6 col-lg-4">
+                   
+                    <table>
+                    <tr>
+                    <label for="cp"> Code postal </label>
+                    </tr>
+                    <tr>
+                    <select        
+                        name="cp"                
+                        multiple={"multiple"}
+                        size={4}
+                        id="codePostal"
+                        onChange={(evt) => {doFilter(setCommerces, commerces, setFilters, filters, evt)}}>
+                                <option value="tous" selected>Tous</option>
+                                <option value="7020">7020 NIMY</option>
+                                <option value="7000">7000 Mons</option>
+                                <option value="7012">7012 Jemappes</option>
+                                <option value="7021">7021 Havré</option>
+                                <option value="7011">7011 Ghlin</option>
+                                <option value="7022">7022 Hyon</option>
+                                <option value="7034">7034 Mons</option>
+                                <option value="7050">7050 Jurbise / Soignies</option>
+                    </select>           
+                    </tr>
+                    </table>            
+                  
+                </Col>
+            
+                <Col className="col-sm-6 col-md-6 col-lg-4">
+                   
+                   <table>
+                       <tr>
+                    <label for="tc"> Types de commerce </label>
+                    </tr>
+                    <tr>
+                            <select 
+                            name ="tc"
+                            multiple size="4" id="typeActivite"
+                                    onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}>
+                                <option value="tous" selected>Tous</option>
+                                <option value="1">Alimentation</option>
+                                <option value="2">Habitat</option>
+                                <option value="3">Santé et bien être</option>
+                                <option value="4">Enseignement et culture</option>
+                                <option value="5">Soin à la nature et à la terre</option>
+                                <option value="6">Outils et technologies</option>
+                                <option value="7">Finance et économie</option>
+                                <option value="8">Foncier et gouvernance</option>
+                            </select>
+                            </tr>   
+                        </table>
+                </Col>     
+
+                <Col className="col-sm-12 col-md-12 col-lg-3"> 
+                <table>
+                <tr>
+                            
+                            <label> Recherche libre </label>    
+                            <input type="text" id="description" 
+                                onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}/>                    
+                                
+                            </tr>
+                    <tr>&nbsp;</tr>
+                    <tr>
+                            
+                            <label> Comptoirs de change ? &nbsp;</label>
+                            <input type="checkbox" id="isComptoir"
+                                       onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}/>                                                
+                                                               
+                            </tr>      
+                            </table>                                         
+                    </Col> 
+                        
+
+                 </Row>
+            </Jumbotron>
 
             {/******  Affiche la liste des commerces en ajouter avant et après la liste une carte spéciale pour ajouter un commerce  ********/}
             <Container className="row d-flex flex-row" id="actions">

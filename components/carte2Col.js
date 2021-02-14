@@ -7,16 +7,27 @@ Création de 2 colonne Jumbotron, bootstrapés
 ********************************************************** */
 
 export default function Carte2Col(props) {
+
+    const narrow = {
+        paddingTop: 0,
+        paddingBottom: 0,
+        //maxHeight: 100,
+        //width: 'auto',
+        //height: 100,
+    };
+
     return (
         <Container id="core">
             <Row className="d-md-flex align-items-stretch align-items-md-end">
-                <Col className="col-md-4 d-md-flex align-self-stretch align-items-md-end">
-                    <Jumbotron className="d-flex flex-column flex-grow-1 justify-content-between justify-content-around align-self-stretch" id="valeurs">
+                <Col className="col-12 col-md-12 col-lg-4 d-md-flex align-self-stretch align-items-md-end" >
+                    <Jumbotron className="d-flex flex-column flex-grow-1 justify-content-between 
+                    justify-content-around align-self-stretch" id="valeurs" style={narrow}>
                         {props.carteGauche}
                     </Jumbotron>
                 </Col>
-                <Col className="col-md-8 d-md-flex align-self-stretch align-items-md-end">
-                    <Jumbotron className="d-flex flex-column flex-grow-1 justify-content-between align-content-around align-self-stretch" id="pourquoi">
+                <Col className="col-md-12 col-lg-8 d-md-flex align-self-stretch align-items-md-end" >
+                    <Jumbotron className="d-flex flex-column flex-grow-1 justify-content-between 
+                    align-content-around align-self-stretch" id="pourquoi" style={narrow}>
                         {props.carteDroite}
                     </Jumbotron>
                 </Col>
