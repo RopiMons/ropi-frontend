@@ -15,7 +15,7 @@ export default function IndexLayout({children, menu}){
                 <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
             </Head>
             <Container>
-                <Image  style={{ height: 300 }} resizeMode="contain" source="/images/banner01.png"/>
+                {/* <Image  style={{ height: 300 }} resizeMode="contain" source="/images/banner01.png"/> */}
                 <BannerRopi />
                 <Menu data={menu} />
                 {children}

@@ -165,15 +165,16 @@ export default function Commercants({status, commerces}) {
 
     return (
         <>
-            <div className="container py-xl-5" id="passez-action">
+           {/*  <div className="container py-xl-5" id="passez-action">
                 <h2 className="text-center my-3">Les prestataires qui acceptent le Ropi</h2>
                 <h4 className="text-center subtitle font-weight-normal">Commerçants, prestataires et associations </h4>
-            </div>
+            </div> */}
 
-            <Carte2Col style={narrowJumbo}
+            <Carte2Col 
                 carteGauche={
                     <>
-                       <h4>Cliquez sur la carte et aidez-vous des filtres ci-dessous pour rechercher un commerce !</h4>
+                        <h2>Les prestataires qui acceptent le Ropi</h2>                
+                        <h4>Cliquez sur la carte et aidez-vous des filtres ci-dessous pour rechercher un commerce !</h4>
                        
                     </>
                 }
