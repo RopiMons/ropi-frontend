@@ -30,8 +30,9 @@ export default function BannerRopi(props){
       }
 
     const subtitle = {
-        color: 'black',        
-        textAlign: 'left',
+        color: 'white',   
+        mixBlendMode: 'difference',
+        textAlign: 'right',     
       }
 
     return(
@@ -71,8 +72,10 @@ export default function BannerRopi(props){
 
             {/* Le bas du banner */}
             <Row>
-                <Col style={subtitle}>
-                    <h2 className={" font-weight-normal"} >La monnaie citoyenne montoise </h2> </Col>
+                <Col className={"align-self-end"} style={subtitle}>
+                    <h4 className={"font-weight-normal"} >
+                        La monnaie citoyenne montoise </h4> 
+                </Col>
                     {/* ************ Les billets Ropi en éventail ************ */}
                 <Col md={3} xs={6} className={"align-self-start "}  style={logo}>
                     <Row className="d-md-flex">
