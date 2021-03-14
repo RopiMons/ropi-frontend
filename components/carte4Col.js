@@ -27,6 +27,7 @@ export default function Carte4Col(props) {
     const imgStyle = {
         maxWidth: 140,
         maxHeight: 100,
+        backgroundColor: 'rgba(255, 255, 255, .7);',
         //width: 'auto',
         //height: 100,
     };
@@ -132,27 +133,38 @@ export function CarteBoutonListeCommerces({commerces}) {
     return (
         <>
             {commerces.map((monCommerce, key) => {
+                console.log("DEBUG monCommerce: ", monCommerce)
                 return (
                     <Carte4Col
                         key={key}
                         texte={monCommerce.nom}
                         comptoirChange={monCommerce.isComptoir}
-                        icone={"store"}        // Icone ou logo.
-                        logo={monCommerce.logo} // ... si icone vide alors logo (image) est utilisé
+                        icone={"store"}        // si pas de logo définit, alors l'icone est utilisée.
+                        logo={monCommerce.logo} // logo (image) utilisée en priorité sur l'icône
 
                         boutonBackgroundImage={'url(' + monCommerce.bgImage + ')'}  // Couleur de fond
                         boutonBackgroundColor={"#fceb99"}                   //  ... si pas d'image d'image de fond
 
                         boutonTextColor={monCommerce.textColor}
                         // Bouton 1 (principal)
-                        boutonText1={""}
-                        boutonIcon1={(monCommerce.liens && monCommerce.liens[0] && monCommerce.liens[0].url && !monCommerce.liens[0].url.includes("facebook")) ? ("affiliatetheme") : ("facebook-square")}
-                        boutonLienWWW1={(monCommerce.liens && monCommerce.liens[0] && monCommerce.liens[0].url) ? monCommerce.liens[0].url : null}
+                        boutonText1={"aaa"}
+                        boutonIcon1={(monCommerce.lien && monCommerce.lien[0] && monCommerce.lien[0].url 
+                            && !monCommerce.lien[0].url.includes("facebook")) 
+                            ? ("affiliatetheme") 
+                            : ("facebook-square")}
+                        boutonLienWWW1={(monCommerce.lien && monCommerce.lien[0] 
+                            && monCommerce.lien[0].url) 
+                            ? monCommerce.lien[0].url 
+                            : null}
 
                         // Bouton 2 (secondaire)
-                        boutonText2={""}
-                        boutonIcon2={(monCommerce.liens && monCommerce.liens[1] && monCommerce.liens[1].url && !monCommerce.liens[1].url.includes("facebook")) ? ("affiliatetheme") : ("facebook-square")}
-                        boutonLienWWW2={(monCommerce.liens && monCommerce.liens[1] && monCommerce.liens[1].url) ? (monCommerce.liens[1].url) : null}>
+                        boutonText2={"bbb"}
+                        boutonIcon2={(monCommerce.lien && monCommerce.lien[1] 
+                            && monCommerce.lien[1].url && !monCommerce.lien[1].url.includes("facebook")) 
+                            ? ("affiliatetheme") 
+                            : ("facebook-square")}
+                        boutonLienWWW2={(monCommerce.lien && monCommerce.lien[1] 
+                        && monCommerce.lien[1].url) ? (monCommerce.lien[1].url) : null}>
 
                         {monCommerce.slogan ? monCommerce.slogan : null} {/*Je suis le children*/}
                     </Carte4Col>
