@@ -13,7 +13,8 @@ export default function Carte2Col(props) {
         paddingTop: 0,
         paddingBottom: 0,
         color: "black",
-        backgroundColor: "white"
+        backgroundColor: "white",
+        textAlign: 'center'
         //maxHeight: 100,
         //width: 'auto',
         //height: 100,        
