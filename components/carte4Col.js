@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Col, Jumbotron, Row} from "react-bootstrap";
 import {MDBIcon} from "mdbreact";
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import color from "react-extra-prop-types/lib/color";
 
 // react-bootsrap documentation
@@ -60,30 +61,32 @@ export default function Carte4Col(props) {
 
                 {/*Display default link button*/}
                 <p className={"text-center"}>
-                    <Button variant="light">
-                        <a
-                            href={props.boutonLienWWW1 ? props.boutonLienWWW1 : '#'}
-                            target="_blank"
-                            className="link text-decoration-none"
-                        >
-                            {/*Afficher icone si disponible, sinon texte */}
-                            {props.boutonIcon1 ? (
-                                <MDBIcon className={"text-center"} fab icon={props.boutonIcon1} size="2x"/>
-                            ) : (props.boutonText1)}
-                        </a>
-                    </Button>
+                    <Link href={props.boutonLienWWW1 ? props.boutonLienWWW1 : '#'}>
+                        <Button variant="light">
+                            <a
+                                className="link text-decoration-none"
+                            >
+                                {/*Afficher icone si disponible, sinon texte */}
+                                {props.boutonIcon1 ? (
+                                    <MDBIcon className={"text-center"} fab icon={props.boutonIcon1} size="2x"/>
+                                ) : (props.boutonText1)}
+                            </a>
+                        </Button>
+                    </Link>
 
                     {/*if more link button are defined, display them*/}
                     {props.boutonLienWWW2 && (
-                        <Button variant="light" style={iconStyle}>
-                            <a href={props.boutonLienWWW2 ? props.boutonLienWWW2 : '#'} target="_blank"
-                               className="link text-decoration-none">
-                                {/*Afficher icone si disponible, sinon texte */}
-                                {props.boutonIcon1 ? (
-                                    <MDBIcon className={"text-center"} fab icon={props.boutonIcon2} size="2x"/>
-                                ) : (props.boutonText2)}
-                            </a>
-                        </Button>
+                        <Link href={props.boutonLienWWW2 ? props.boutonLienWWW2 : '#'}>
+                            <Button variant="light" style={iconStyle}>
+                                <a
+                                    className="link text-decoration-none">
+                                    {/*Afficher icone si disponible, sinon texte */}
+                                    {props.boutonIcon1 ? (
+                                        <MDBIcon className={"text-center"} fab icon={props.boutonIcon2} size="2x"/>
+                                    ) : (props.boutonText2)}
+                                </a>
+                            </Button>
+                        </Link>
                     )}
                 </p>
             </Jumbotron>

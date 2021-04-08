@@ -13,11 +13,11 @@ export default function Paragraphe(props){
     return(
         <Row>
             <Col>
-                <Row className={styles.paragrapheTitle}>
+                <Row className={styles.paragrapheTitle} id={props.anchor}>
                     <h2>{props.titre}</h2>
                 </Row>
                 <Row className={styles.paragrapheContent}>
-                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.children)}} />
+                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.children)}}/>
                 </Row>
             </Col>
         </Row>
@@ -26,5 +26,6 @@ export default function Paragraphe(props){
 
 Paragraphe.propTypes = {
     titre: PropTypes.string.isRequired,
-    children: PropTypes.string.isRequired
+    children: PropTypes.string.isRequired,
+    anchor: PropTypes.number.isRequired
 }

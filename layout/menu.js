@@ -8,12 +8,12 @@ export default function Menu({data}){
         <Container className={styles.menu}>
             <Navbar variant={'light'} expand={'md'}>
                 <div className="container-fluid">
-                    <Navbar.Brand href={"/"}>Ropi</Navbar.Brand>
-                    <Navbar.Toggle />
+                    <Navbar.Brand href={"/"}>Accueil</Navbar.Brand>
+                    <Navbar.Toggle split id={"dropdown-split-basic"}/>
                     <Navbar.Collapse>
                         <Nav className="mr-auto">
-                            {data && data.map((categorie,key)=>{
-                                return(
+                            {data && data.map((categorie, key) => {
+                                return (
                                     <div key={key}>
                                         {categorie.pages.length > 1 ? (
                                             <Nav.Item className={"d-flex flex-row align-items-center " + styles.navItem}
@@ -21,12 +21,27 @@ export default function Menu({data}){
                                                 {categorie.faIcone && (<i className={categorie.faIcone}/>)}
                                                 <NavDropdown id={key} title={categorie.nom}>
                                                     {categorie.pages.map((page, key) => {
-                                                        return (
-                                                            <Link key={key}
-                                                                  href={`/page/${encodeURIComponent(page.id)}`}
-                                                                  passHref><NavDropdown.Item
-                                                                as={"a"}>{page.titreMenu}</NavDropdown.Item></Link>
-                                                        )
+                                                        if (page.paragraphes.length > 1) {
+                                                            return (
+                                                                <NavDropdown id={key} title={page.titreMenu}>
+                                                                    {page.paragraphes.map((paragraphe, key) => {
+                                                                        return (
+                                                                            <Link key={key}
+                                                                                  href={`/page/${encodeURIComponent(page.id)}#${encodeURIComponent(paragraphe.id)}`}
+                                                                                  passHref><NavDropdown.Item
+                                                                                as={"a"}>{paragraphe.titre}</NavDropdown.Item></Link>
+                                                                        )
+                                                                    })}
+                                                                </NavDropdown>
+                                                            )
+                                                        } else {
+                                                            return (
+                                                                <Link key={key}
+                                                                      href={`/page/${encodeURIComponent(page.id)}`}
+                                                                      passHref><NavDropdown.Item
+                                                                    as={"a"}>{page.titreMenu}</NavDropdown.Item></Link>
+                                                            )
+                                                        }
                                                     })}
                                                 </NavDropdown>
                                             </Nav.Item>

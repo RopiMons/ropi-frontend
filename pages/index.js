@@ -21,9 +21,9 @@ export default function Index() {
     const ActionImageArray = ["", "", "", "", ""];
     // boutons liens à cliquer
     const ActionTextColorArray = ["black", "black", "black", "black"];
-    const ActionTextArray1 = ["Ropi banking", "Rechercher", "Adhérer", "Aider"];
+    const ActionTextArray1 = ["Ropi banking", "Commerçant.e.s", "Adhérer", "Aider"];
     const ActionIconArray1 = ["facebook-square", "", "", ""];
-    const ActionButtonLienWWWArray1 = ["internal_link", "http://www.google.be", "www.google.be", "www.google.be"];
+    const ActionButtonLienWWWArray1 = ["commercants", "commercants", "www.google.be", "www.google.be"];
     //const ActionTextArray2 = ["", "", "", ""];
     //const ActionButtonLienWWWArray2 = [ "", "", "", ""];
 
