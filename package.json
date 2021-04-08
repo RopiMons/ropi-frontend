@@ -27,7 +27,7 @@
     "react-iframe": "^1.8.0",
     "react-leaflet": "^3.1.0",
     "react-native-web": "^0.14.5",
-    "yup": "^0.29.2"
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "babel-plugin-react-native-web": "^0.14.5"

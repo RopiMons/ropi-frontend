@@ -25,6 +25,7 @@ const Map = ({commerces}) => {
                 return (
                     <Marker key={key} position={[commerce.lat, commerce.lon]} icon={iconPerson}>
                         <Popup>
+                            <h3>{commerce.nom}</h3>
                             {commerce.slogan}
                         </Popup>
                     </Marker>
