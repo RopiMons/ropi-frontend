@@ -130,7 +130,11 @@ const doFilter = (setCommerceFn, commerces, setFilters, filters, evt) => {
 
 export default function Commercants({status, commerces}) {
     const narrowJumbo = {
-        padding: 0,
+        padding: 3,
+        backgroundColor: "white",
+        borderStyle: 'solid',
+        borderColor: 'grey',
+        borderWidth: 1
         //maxHeight: 100,
         //width: 'auto',
         //height: 100,
@@ -165,15 +169,16 @@ export default function Commercants({status, commerces}) {
 
     return (
         <>
-            <div className="container py-xl-5" id="passez-action">
+           {/*  <div className="container py-xl-5" id="passez-action">
                 <h2 className="text-center my-3">Les prestataires qui acceptent le Ropi</h2>
                 <h4 className="text-center subtitle font-weight-normal">Commerçants, prestataires et associations </h4>
-            </div>
+            </div> */}
 
-            <Carte2Col style={narrowJumbo}
+            <Carte2Col 
                 carteGauche={
                     <>
-                       <h4>Cliquez sur la carte et aidez-vous des filtres ci-dessous pour rechercher un commerce !</h4>
+                        <h2>Les prestataires qui acceptent le Ropi</h2>                
+                        <h4>Cliquez sur la carte (popups) et aidez-vous des filtres ci-dessous pour rechercher un commerce !</h4>
                        
                     </>
                 }
@@ -197,13 +202,13 @@ export default function Commercants({status, commerces}) {
                 *****     Bar des filtres  *******
             ***************************************/}
             <Jumbotron className=" " id="valeurs" style={narrowJumbo}>
-                <Row className="">
+                <Row className="d-flex justify-content-start">
                                                 
-                <Col className="col-sm-6 col-md-6 col-lg-4">
+                <Col className="col-sm-6 col-md-4 col-lg-3">
                    
                     <table>
                     <tr>
-                    <label for="cp"> Code postal </label>
+                    <label for="cp"> Codes postaux</label>
                     </tr>
                     <tr>
                     <select        
@@ -227,7 +232,7 @@ export default function Commercants({status, commerces}) {
                   
                 </Col>
             
-                <Col className="col-sm-6 col-md-6 col-lg-4">
+                <Col className="col-sm-6 col-md-4 col-lg-3 ">
                    
                    <table>
                        <tr>
@@ -254,6 +259,7 @@ export default function Commercants({status, commerces}) {
 
                 <Col className="col-sm-12 col-md-12 col-lg-3"> 
                 <table>
+                <tr>&nbsp;</tr>
                 <tr>
                             
                             <label> Recherche libre </label>    
@@ -273,6 +279,11 @@ export default function Commercants({status, commerces}) {
                     </Col> 
                         
 
+                 </Row>
+                 <Row >
+                     <Col >
+                        <h5>(Maintenez Ctrl appuyé pour choisir plusieurs options)</h5>
+                  </Col>
                  </Row>
             </Jumbotron>
 
