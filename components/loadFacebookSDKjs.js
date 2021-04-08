@@ -33,10 +33,10 @@ export default function FacebookLatestNews(props) {
                 url={"https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2F" + process.env.FB_PAGEID
                     + "%2Fposts%2F" + props.messageId
                     + "%2F&show_text=true&appId=820522908723163"}                               
-                width="1200px"
-                height="1000px"
+                width="100%"
+                height="500px"
                 scrolling="auto"
-                id="facebookLatestNEw"
+                id="facebookLatestNew"
                 className="myClassname"
                 display="initial"
                 position="relative"

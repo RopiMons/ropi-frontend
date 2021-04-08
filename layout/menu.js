@@ -19,11 +19,11 @@ export default function Menu({data}){
                                             <Nav.Item className={"d-flex flex-row align-items-center " + styles.navItem}
                                                       role={"presentation"}>
                                                 {categorie.faIcone && (<i className={categorie.faIcone}/>)}
-                                                <NavDropdown id={key} title={categorie.nom}>
+                                                <NavDropdown key={key} id={key} title={categorie.nom}>
                                                     {categorie.pages.map((page, key) => {
                                                         if (page.paragraphes.length > 0) {
                                                             return (
-                                                                <NavDropdown id={key} title={page.titreMenu}>
+                                                                <NavDropdown key={key} id={key} title={page.titreMenu}>
                                                                     {page.paragraphes.map((paragraphe, key) => {
                                                                         return (
                                                                             <Link key={key}

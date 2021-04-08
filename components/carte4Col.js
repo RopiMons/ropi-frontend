@@ -151,23 +151,23 @@ export function CarteBoutonListeCommerces({commerces}) {
                         boutonTextColor={monCommerce.textColor}
                         // Bouton 1 (principal)
                         boutonText1={"aaa"}
-                        boutonIcon1={(monCommerce.lien && monCommerce.lien[0] && monCommerce.lien[0].url 
-                            && !monCommerce.lien[0].url.includes("facebook")) 
+                        boutonIcon1={(monCommerce.liens && monCommerce.liens[0] && monCommerce.liens[0].url 
+                            && !monCommerce.liens[0].url.includes("facebook")) 
                             ? ("affiliatetheme") 
                             : ("facebook-square")}
-                        boutonLienWWW1={(monCommerce.lien && monCommerce.lien[0] 
-                            && monCommerce.lien[0].url) 
-                            ? monCommerce.lien[0].url 
+                        boutonLienWWW1={(monCommerce.liens && monCommerce.liens[0] 
+                            && monCommerce.liens[0].url) 
+                            ? monCommerce.liens[0].url 
                             : null}
 
                         // Bouton 2 (secondaire)
                         boutonText2={"bbb"}
-                        boutonIcon2={(monCommerce.lien && monCommerce.lien[1] 
-                            && monCommerce.lien[1].url && !monCommerce.lien[1].url.includes("facebook")) 
+                        boutonIcon2={(monCommerce.liens && monCommerce.liens[1] 
+                            && monCommerce.liens[1].url && !monCommerce.liens[1].url.includes("facebook")) 
                             ? ("affiliatetheme") 
                             : ("facebook-square")}
-                        boutonLienWWW2={(monCommerce.lien && monCommerce.lien[1] 
-                        && monCommerce.lien[1].url) ? (monCommerce.lien[1].url) : null}>
+                        boutonLienWWW2={(monCommerce.liens && monCommerce.liens[1] 
+                        && monCommerce.liens[1].url) ? (monCommerce.liens[1].url) : null}>
 
                         {monCommerce.slogan ? monCommerce.slogan : null} {/*Je suis le children*/}
                     </Carte4Col>
