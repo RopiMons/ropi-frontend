@@ -15,13 +15,13 @@ export default function Menu({data}){
                             {data && data.map((categorie, key) => {
                                 return (
                                     <div key={key}>
-                                        {categorie.pages.length > 1 ? (
+                                        {categorie.pages.length > 0 ? (
                                             <Nav.Item className={"d-flex flex-row align-items-center " + styles.navItem}
                                                       role={"presentation"}>
                                                 {categorie.faIcone && (<i className={categorie.faIcone}/>)}
                                                 <NavDropdown id={key} title={categorie.nom}>
                                                     {categorie.pages.map((page, key) => {
-                                                        if (page.paragraphes.length > 1) {
+                                                        if (page.paragraphes.length > 0) {
                                                             return (
                                                                 <NavDropdown id={key} title={page.titreMenu}>
                                                                     {page.paragraphes.map((paragraphe, key) => {
