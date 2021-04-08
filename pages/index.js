@@ -7,7 +7,7 @@ import Carte2Col from "../components/carte2Col";
 import {CarteBoutonAccueil} from "../components/carte4Col";
 
 
-export default function Index() {
+export default function Index(props) {
     const ActionIconArray = ["university", "store", "user-circle", "users"];
     const ActionLogoImageArray = ["", "", "", ""];
     const ActionTitleArray = ['Obtenir des Ropi', 'Dépenser ses Ropi', 'Devenir partenaire', 'Devenir bénévole'];
@@ -109,9 +109,33 @@ export default function Index() {
                         </p>
                     </>}>
             </Carte2Col>
-            <BlogRopi/>
+            <BlogRopi messageId={props.messageId} />
         </>
     )
 
 
+}
+
+export async function getStaticProps(context){
+
+    /* Obtain the page id of the Ropi facebook page and the last message id */
+
+    let messageId = null;   // the facebook  id of the latest published message 
+    
+        await fetch('https://graph.facebook.com/v9.0/'+process.env.FB_PAGEID+'/feed?access_token='+process.env.FB_SECRET).then(
+         async (result) => {
+            await result.json().then(json => {
+
+                 /* usefull regex generation tool https://regex101.com/ 
+                 In the returned json string, the "id" = idPage_idPostedMessage
+                 So we extract the 2nd number after the underscore (=idPostedMessage)
+                  */
+                messageId = json.data[0].id.replace(/(\d*)_(\d*)/gm, `$2`);
+            })
+        
+        }   
+        );
+    return {
+        props: {messageId : messageId},// will be passed to the page component as props
+      }
 }
