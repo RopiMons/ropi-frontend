@@ -23,13 +23,13 @@ export default function Menu({data}){
                                                     {categorie.pages.map((page, key) => {
                                                         if (page.paragraphes.length > 0) {
                                                             return (
-                                                                <NavDropdown key={key} id={key} title={page.titreMenu}>
+                                                                <NavDropdown key={key} id={key} title={page.titreMenu} className="dropright">
                                                                     {page.paragraphes.map((paragraphe, key) => {
                                                                         return (
                                                                             <Link key={key}
                                                                                   href={`/page/${encodeURIComponent(page.id)}#${encodeURIComponent(paragraphe.id)}`}
                                                                                   passHref><NavDropdown.Item
-                                                                                as={"a"}>{paragraphe.titre}</NavDropdown.Item></Link>
+                                                                                as={"a"}>{paragraphe.titre} </NavDropdown.Item></Link>
                                                                         )
                                                                     })}
                                                                 </NavDropdown>
