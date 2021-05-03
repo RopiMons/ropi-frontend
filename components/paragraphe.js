@@ -14,7 +14,7 @@ export default function Paragraphe(props){
         <Row>
             <Col>
                 <Row className={styles.paragrapheTitle} id={props.anchor}>
-                    <h2>{props.titre}</h2>
+                    <h1><strong>{props.titre}</strong></h1>
                 </Row>
                 <Row className={styles.paragrapheContent}>
                     <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.children)}}/>

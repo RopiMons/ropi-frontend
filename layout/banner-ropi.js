@@ -10,19 +10,35 @@ import styles from './css/index-layout.module.css'
 export default function BannerRopi(props){
     
     const banner = {
-        marginTop: 10,        
-        backgroundImage: 'url("/images/banner02.png")'
+        marginTop: 0,        
+        paddingTop: 0,
+        //backgroundImage: 'linear-gradient(rgba(176, 214, 185, 0.5), rgba(255, 255, 0, 0.5)), url("/images/banner02.png")',
+        //backgroundImage: 'rgba(255, 255, 255, 1.0), url("/images/banner02.png")',
+        backgroundImage: 'url("/images/banner02.png")',
+        //mixBlendMode: 'luminosity',
+        mixBlendMode: 'normal',
+        borderRadius: 20,
+        //borderStyle: 'inset'
       }          
     const TableCounter = {
         padding: 0, 
         margin: 5, 
-        backgroundColor: 'rgba(255,255,255,0.7)',
+        //backgroundColor: 'rgba(255,255,255,0.4)',
         borderRadius: 20,
         fontSize: 20,
         fontFamily: 'Monospace',
         color: '{#5a5757}',
         textAlign: 'center'
     }    
+
+    const countertxt = {
+        display: 'table', /* keep the background color wrapped tight */
+        margin: '0px auto 0px auto', /* keep the table centered */
+        padding: '5px',
+        fontSize: '20px',
+        backgroundColor: 'rgba(50,50,50,0.4)',
+        color: '#ffffff'
+    }
             
     const logo = {
         paddingTop: 20,
@@ -34,6 +50,8 @@ export default function BannerRopi(props){
         mixBlendMode: 'difference',
         textAlign: 'right',     
       }
+
+     
 
     return(
         <Container  style={banner}>
@@ -48,20 +66,20 @@ export default function BannerRopi(props){
                     {/* <Row className={"flex-grow-0 flex-shrink-0 "}  > */}
                         <Col className={"col-lg-3"} >                    
                             <Table size={"lg"} style={TableCounter} >
-                                <thead> <tr> <th>Nos prestataires</th> </tr>  </thead>
-                                <tbody> <tr> <td>21</td>  </tr> </tbody>
+                                <thead> <tr> <th><h1 style={countertxt}>Nos prestataires</h1></th> </tr>  </thead>
+                                <tbody> <tr> <td><h1 style={countertxt}>21</h1></td>  </tr> </tbody>
                             </Table>
                         </Col>
                         <Col className={"col-lg-3"}>
                             <Table size={"lg"} style={TableCounter} >
-                                <thead className={"text-center "}> <tr><th>Comptoirs de change</th> </tr>  </thead>
-                                <tbody > <tr> <td>2</td> </tr> </tbody>
+                                <thead className={"text-center "}> <tr><th><h1 style={countertxt}>Comptoirs de change</h1></th> </tr>  </thead>
+                                <tbody > <tr> <td><h1 style={countertxt}>2</h1></td> </tr> </tbody>
                             </Table>
                         </Col>
                         <Col className={"col-lg-3"}>
                             <Table size={"lg"} style={TableCounter} >
-                                <thead> <tr> <th>Ropi en circulation</th></tr> </thead>
-                                <tbody > <tr> <td>4567</td> </tr> </tbody>
+                                <thead> <tr> <th> <h1 style={countertxt}>Ropi en circulation</h1></th></tr> </thead>                                
+                                <tbody > <tr> <td> <h1 style={countertxt}>4567</h1> </td> </tr> </tbody>
                             </Table>
                         </Col>
                         

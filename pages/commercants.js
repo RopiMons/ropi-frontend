@@ -130,11 +130,15 @@ const doFilter = (setCommerceFn, commerces, setFilters, filters, evt) => {
 
 export default function Commercants({status, commerces}) {
     const narrowJumbo = {
-        padding: 3,
-        backgroundColor: "white",
+        paddingTop: 15,
+        paddingBottom: 3,
+        paddingLeft: 20,
+        paddingRight: 20,
+        backgroundColor: 'rgba(2555,255,255,0.7)',
         borderStyle: 'solid',
         borderColor: 'grey',
-        borderWidth: 1
+        borderWidth: 1,
+        borderRadius: 20
         //maxHeight: 100,
         //width: 'auto',
         //height: 100,
@@ -177,8 +181,9 @@ export default function Commercants({status, commerces}) {
             <Carte2Col 
                 carteGauche={
                     <>
+                    <br></br>
                         <h2>Les prestataires qui acceptent le Ropi</h2>                
-                        <h4>Cliquez sur la carte (popups) et aidez-vous des filtres ci-dessous pour rechercher un commerce !</h4>
+                        <h5>Cliquez sur la carte (popups) et aidez-vous des filtres ci-dessous pour rechercher un commerce !</h5>
                        
                     </>
                 }
@@ -262,7 +267,7 @@ export default function Commercants({status, commerces}) {
                 <tr>&nbsp;</tr>
                 <tr>
                             
-                            <label> Recherche libre </label>    
+                            <label> Recherche libre &nbsp; </label>    
                             <input type="text" id="description" 
                                 onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}/>                    
                                 
@@ -287,11 +292,13 @@ export default function Commercants({status, commerces}) {
                  </Row>
             </Jumbotron>
 
-            {/******  Affiche la liste des commerces en ajouter avant et après la liste une carte spéciale pour ajouter un commerce  ********/}
-            <Container className="row d-flex flex-row" id="actions">
+            {/******  Affiche la liste des commerces et ajouter avant et après la liste une carte spéciale pour ajouter un commerce  ********/}
+            <Container  id="actions" style={narrowJumbo}>
+            <Row className="d-flex justify-content-start">
                 <AddCommerce/>
                 <CarteBoutonListeCommerces commerces={filteredCommerces}/>
                 <AddCommerce/>
+            </Row>
             </Container>
 
         </>
