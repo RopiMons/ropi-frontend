@@ -1,4 +1,5 @@
 #!/bin/sh
-composer install
+yarn install
 yarn add force
+yarn dev
 tail -F /dev/null
