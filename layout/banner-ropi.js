@@ -22,9 +22,9 @@ export default function BannerRopi(props){
       }          
     const TableCounter = {
         padding: 0, 
-        margin: 5, 
+        margin: 0, 
         //backgroundColor: 'rgba(255,255,255,0.4)',
-        borderRadius: 20,
+        //borderRadius: 20,
         fontSize: 20,
         fontFamily: 'Monospace',
         color: '{#5a5757}',
@@ -34,9 +34,9 @@ export default function BannerRopi(props){
     const countertxt = {
         display: 'table', /* keep the background color wrapped tight */
         margin: '0px auto 0px auto', /* keep the table centered */
-        padding: '5px',
+        padding: '0px',
         fontSize: '20px',
-        backgroundColor: 'rgba(50,50,50,0.4)',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
         color: '#ffffff'
     }
             
@@ -62,8 +62,6 @@ export default function BannerRopi(props){
                      styles={{padding: '0px'}} />                                                                      
                 </Col>
                 {/* ************ Les compteurs ************ */} 
-                {/* <Col className={"col-lg-3  d-md-none d-md-inline "}  style={Counters}> */}
-                    {/* <Row className={"flex-grow-0 flex-shrink-0 "}  > */}
                         <Col className={"col-lg-3"} >                    
                             <Table size={"lg"} style={TableCounter} >
                                 <thead> <tr> <th><h1 style={countertxt}>Nos prestataires</h1></th> </tr>  </thead>
@@ -72,7 +70,7 @@ export default function BannerRopi(props){
                         </Col>
                         <Col className={"col-lg-3"}>
                             <Table size={"lg"} style={TableCounter} >
-                                <thead className={"text-center "}> <tr><th><h1 style={countertxt}>Comptoirs de change</h1></th> </tr>  </thead>
+                                <thead> <tr><th><h1 style={countertxt}>Comptoirs de change</h1></th> </tr>  </thead>
                                 <tbody > <tr> <td><h1 style={countertxt}>2</h1></td> </tr> </tbody>
                             </Table>
                         </Col>
@@ -81,11 +79,7 @@ export default function BannerRopi(props){
                                 <thead> <tr> <th> <h1 style={countertxt}>Ropi en circulation</h1></th></tr> </thead>                                
                                 <tbody > <tr> <td> <h1 style={countertxt}>4567</h1> </td> </tr> </tbody>
                             </Table>
-                        </Col>
-                        
-                    {/* </Row> */}
-                {/* </Col> */}
-                
+                        </Col>       
             </Row>
 
             {/* Le bas du banner */}

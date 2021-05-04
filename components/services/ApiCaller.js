@@ -4,7 +4,8 @@ import https from "https";
 const prod = process.env.NODE_ENV === 'production';
 
 
-export const BASE = prod ? 'https://api.ropi.be/' : 'https://localhost:8000/';
+//export const BASE = prod ? 'https://api.ropi.be/' : 'https://localhost:8000/';
+export const BASE = prod ? 'https://api.ropi.be/' : 'https://php-fpm-api:8000/';
 export const BASE_API = prod ? BASE : BASE + 'api';
 
 const COMMERCES = '/commerces';
