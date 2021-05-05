@@ -54,7 +54,7 @@ export function BlogRopiPieceOfNewsSecondaries(props) {
 
 export default function BlogRopi(props) {
     return (
-        <Container className="py-xl-5" id="blog-actualite" fluid="true">
+        <Container className="" id="blog-actualite" fluid="true">
                 
 
             <h2  className="text-center my-3">Des nouvelles du Ropi et des prestataires</h2>
@@ -66,8 +66,8 @@ export default function BlogRopi(props) {
                     </Col>
             </Row>
 
-            <Row className="py-5">
-                <Col className="col-12 text-center" md={{ span: true}}>
+            <Row className="py-5 justify-content-center">
+                <Col className="col-12 text-center d-flex justify-content-center" md={{ span: true}}>
                         <FacebookLatestNews messageId={props.messageId} />
                 </Col>
             </Row>

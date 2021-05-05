@@ -28,12 +28,12 @@ export default function Carte2Col(props) {
     };
 
     const empty = {
-        backgroundColor: 'rgba(2555,255,255,0.0)',
+        backgroundColor: 'rgba(2555,255,200,0.0)',
         borderRadius: 20,
         marginTop: 0,
         marginBottom: 0,
         color: "black",
-        padding: 0
+        padding: 0,        
     };
 
 

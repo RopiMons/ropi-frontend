@@ -10,7 +10,7 @@ import { View, Image, StyleSheet } from 'react-native';
 export default function IndexLayout({children, menu}){
 
     const fond = {      
-        backgroundImage: 'linear-gradient(rgba(176, 214, 185, 0.5), rgba(255, 255, 0, 0.5)), url("/images/ROPI_WEB_BG_BL.png")',
+        backgroundImage: 'linear-gradient(rgba(211, 255, 222, 0.8), rgba(255, 255, 150, 0.8)), url("/images/ROPI_WEB_BG_BL.png")',
         //backgroundColor: 'rgba(245,250,250,0.7)',
         mixBlendMode: 'multiply'
       }  

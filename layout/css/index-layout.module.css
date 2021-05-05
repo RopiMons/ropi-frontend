@@ -17,8 +17,9 @@
 
 .menu {
   background-color: rgba(255, 255, 255, 0.5);
-  margin-top: 5px;
-  border-radius: 20px;
+  /* margin-top: 5px; */
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   /* border-style: inset; */
 }
 

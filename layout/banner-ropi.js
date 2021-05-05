@@ -17,8 +17,9 @@ export default function BannerRopi(props){
         backgroundImage: 'url("/images/banner02.png")',
         //mixBlendMode: 'luminosity',
         mixBlendMode: 'normal',
-        borderRadius: 20,
         //borderStyle: 'inset'
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20
       }          
     const TableCounter = {
         padding: 0, 
@@ -28,7 +29,8 @@ export default function BannerRopi(props){
         fontSize: 20,
         fontFamily: 'Monospace',
         color: '{#5a5757}',
-        textAlign: 'center'
+        textAlign: 'center',
+        verticalAlign: 'middle'
     }    
 
     const countertxt = {
@@ -37,7 +39,9 @@ export default function BannerRopi(props){
         padding: '0px',
         fontSize: '20px',
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        color: '#ffffff'
+        color: '#ffffff',
+        textAlign: 'center',
+        verticalAlign: 'middle'       
     }
             
     const logo = {
@@ -58,44 +62,61 @@ export default function BannerRopi(props){
             <Row className={"justify-content-between align-items-center "}>
                  {/* ************ Le logo ROPI ************ */}
                 <Col className={"col-lg-3 d-md-inline "} className={"align-self-start "}  style={logo}>*                   
-                     <img className="img-fluid d-md-flex" src="/images/ropi_logo.png" 
-                     styles={{padding: '0px'}} />                                                                      
+                     <img className="img-fluid d-md-flex" src="/images/ropi_logo.png" width='300px'
+                     styles={{padding: '0px'}} />        
+
+                        <br></br>
+                      <h4 className={"font-weight-normal"} style={countertxt} >
+                        La monnaie citoyenne montoise </h4>                                                               
                 </Col>
+{/*                 <Col className={"align-self-end"} style={TableCounter}>
+                   
+                </Col> */}
                 {/* ************ Les compteurs ************ */} 
                         <Col className={"col-lg-3"} >                    
-                            <Table size={"lg"} style={TableCounter} >
-                                <thead> <tr> <th><h1 style={countertxt}>Nos prestataires</h1></th> </tr>  </thead>
-                                <tbody> <tr> <td><h1 style={countertxt}>21</h1></td>  </tr> </tbody>
+                            <Table size={"lg"} style={TableCounter} >                            
+                                <tbody> 
+                                    <tr>                                 
+                                        <td><h1 style={countertxt}>27 prestataires et associations</h1></td>                                      
+                                    </tr>                                     
+                                    <tr>                                         
+                                        <td><h1 style={countertxt}>3 comptoirs de change</h1></td>                                      
+                                    </tr>                                     
+                                    <tr> 
+                                        <td> <h1 style={countertxt}>5623 Ropi en circulation</h1> </td>                                        
+                                    </tr>                                     
+                                </tbody>
                             </Table>
+                            <img className="img-fluid" src="/images/eventail_billets3_rounded.png" />   
                         </Col>
-                        <Col className={"col-lg-3"}>
-                            <Table size={"lg"} style={TableCounter} >
+                        
+                            {/* <Table size={"lg"} style={TableCounter} >
                                 <thead> <tr><th><h1 style={countertxt}>Comptoirs de change</h1></th> </tr>  </thead>
                                 <tbody > <tr> <td><h1 style={countertxt}>2</h1></td> </tr> </tbody>
                             </Table>
-                        </Col>
-                        <Col className={"col-lg-3"}>
+                        
+                        
                             <Table size={"lg"} style={TableCounter} >
                                 <thead> <tr> <th> <h1 style={countertxt}>Ropi en circulation</h1></th></tr> </thead>                                
                                 <tbody > <tr> <td> <h1 style={countertxt}>4567</h1> </td> </tr> </tbody>
-                            </Table>
-                        </Col>       
+                            </Table> */}
+                        
             </Row>
 
             {/* Le bas du banner */}
             <Row>
-                <Col className={"align-self-end"} style={subtitle}>
-                    <h4 className={"font-weight-normal"} >
+                {/* <Col className={"align-self-start"} style={TableCounter}>
+                    <h4 className={"font-weight-normal"} style={countertxt} >
                         La monnaie citoyenne montoise </h4> 
-                </Col>
+                </Col> */}
                     {/* ************ Les billets Ropi en éventail ************ */}
-                <Col md={3} xs={6} className={"align-self-start "}  style={logo}>
+                {/* <Col md={3} xs={6} className={"align-self-start "}  style={logo}>
                     <Row className="d-md-flex">
                         <Col>                                             
                             <img className="img-fluid" src="/images/eventail_billets3_rounded.png" />                                          
                         </Col>
                     </Row>
-                </Col>
+                </Col> */}
             </Row>
         </Container>
     )

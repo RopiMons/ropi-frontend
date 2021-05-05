@@ -37,6 +37,22 @@ export default function Index(props) {
 
     return (
         <>
+            <Container className="py-xl-5" id="passez-action">
+            <h2 className="text-center my-3">Pourquoi utiliser une monnaie locale comme le Ropi? </h2>
+            <h4 className="text-center" style={{lineHeight: "200%"}}> En adoptant le Ropi comme mode payement </h4>
+            <h5 className="" style={{lineHeight: "200%", marginLeft: "0px"}}>
+                <br></br>
+                <i class="fas fa-check-square"> </i> Vous favorisez les circuits courts dans la région. <br></br>
+                <i class="fas fa-check-square"> </i> Vous enrichissez la région. <br></br>
+                <i class="fas fa-check-square"> </i> Vous évitez les frais de lecteur de cartes bancaires .<br></br>
+                <i class="fas fa-check-square"> </i> Vous êtes certain après votre achat que votre argent continuera sa route dans la région. <br></br>
+                <i class="fas fa-check-square"> </i> Vous financez des projets éthiques en dédoublant votre argent (la garantie en euro est placé dans une banque éthique).<br></br>
+                <i class="fas fa-check-square"> </i> Vous votez pour revoir demain votre producteur / commerçant et indirectement leurs partenaires.  <br></br>
+                <i class="fas fa-check-square"> </i> Vous donnez un sens à l'argent pour un avenir durable. <br></br>
+                <i class="fas fa-check-square"> </i> Vous participez à la protection de l'environnement grâce au circuits courts. <br></br>
+            </h5>
+            </Container>
+
             {/* Passer à l'action*/}
             <Container className="py-xl-5" id="passez-action">
                 <h2 className="text-center my-3">Le Ropi en pratique</h2>
