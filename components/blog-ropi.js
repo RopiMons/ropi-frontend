@@ -54,7 +54,7 @@ export function BlogRopiPieceOfNewsSecondaries(props) {
 
 export default function BlogRopi(props) {
     return (
-        <Container className="" id="blog-actualite" fluid="true">
+        <Container className="py-xl-5" id="blog-actualite" fluid="true">
                 
 
             <h2  className="text-center my-3">Des nouvelles du Ropi et des prestataires</h2>
