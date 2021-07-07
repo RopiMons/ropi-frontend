@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Col, Jumbotron, Row} from "react-bootstrap";
 import {MDBIcon} from "mdbreact";
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import color from "react-extra-prop-types/lib/color";
 
 // react-bootsrap documentation
@@ -27,8 +28,9 @@ export default function Carte4Col(props) {
     const imgStyle = {
         maxWidth: 140,
         maxHeight: 100,
-        width: 'auto',
-        height: 100,
+        backgroundColor: 'rgba(255, 255, 255, .7);',
+        //width: 'auto',
+        //height: 100,
     };
     const iconStyle = {
         marginLeft: 16
@@ -60,30 +62,32 @@ export default function Carte4Col(props) {
 
                 {/*Display default link button*/}
                 <p className={"text-center"}>
-                    <Button variant="light">
-                        <a
-                            href={props.boutonLienWWW1 ? props.boutonLienWWW1 : '#'}
-                            target="_blank"
-                            className="link text-decoration-none"
-                        >
-                            {/*Afficher icone si disponible, sinon texte */}
-                            {props.boutonIcon1 ? (
-                                <MDBIcon className={"text-center"} fab icon={props.boutonIcon1} size="2x"/>
-                            ) : (props.boutonText1)}
-                        </a>
-                    </Button>
+                    <Link href={props.boutonLienWWW1 ? props.boutonLienWWW1 : '#'}>
+                        <Button variant="light">
+                            <a
+                                className="link text-decoration-none"
+                            >
+                                {/*Afficher icone si disponible, sinon texte */}
+                                {props.boutonIcon1 ? (
+                                    <MDBIcon className={"text-center"} fab icon={props.boutonIcon1} size="2x"/>
+                                ) : (props.boutonText1)}
+                            </a>
+                        </Button>
+                    </Link>
 
                     {/*if more link button are defined, display them*/}
                     {props.boutonLienWWW2 && (
-                        <Button variant="light" style={iconStyle}>
-                            <a href={props.boutonLienWWW2 ? props.boutonLienWWW2 : '#'} target="_blank"
-                               className="link text-decoration-none">
-                                {/*Afficher icone si disponible, sinon texte */}
-                                {props.boutonIcon1 ? (
-                                    <MDBIcon className={"text-center"} fab icon={props.boutonIcon2} size="2x"/>
-                                ) : (props.boutonText2)}
-                            </a>
-                        </Button>
+                        <Link href={props.boutonLienWWW2 ? props.boutonLienWWW2 : '#'}>
+                            <Button variant="light" style={iconStyle}>
+                                <a
+                                    className="link text-decoration-none">
+                                    {/*Afficher icone si disponible, sinon texte */}
+                                    {props.boutonIcon1 ? (
+                                        <MDBIcon className={"text-center"} fab icon={props.boutonIcon2} size="2x"/>
+                                    ) : (props.boutonText2)}
+                                </a>
+                            </Button>
+                        </Link>
                     )}
                 </p>
             </Jumbotron>
@@ -128,31 +132,42 @@ export function CarteBoutonAccueil(props) {
     )
 }
 
-export function CarteBoutonListeCommerces(props) {
+export function CarteBoutonListeCommerces({commerces}) {
     return (
         <>
-            {props.commerces.map((monCommerce, key) => {
+            {commerces.map((monCommerce, key) => {
+                console.log("DEBUG monCommerce: ", monCommerce)
                 return (
                     <Carte4Col
                         key={key}
                         texte={monCommerce.nom}
-                        comptoirChange={monCommerce.isComptoire}
-                        icone={"store"}        // Icone ou logo.
-                        logo={monCommerce.logo} // ... si icone vide alors logo (image) est utilisé
+                        comptoirChange={monCommerce.isComptoir}
+                        icone={"store"}        // si pas de logo définit, alors l'icone est utilisée.
+                        logo={monCommerce.logo} // logo (image) utilisée en priorité sur l'icône
 
                         boutonBackgroundImage={'url(' + monCommerce.bgImage + ')'}  // Couleur de fond
                         boutonBackgroundColor={"#fceb99"}                   //  ... si pas d'image d'image de fond
 
                         boutonTextColor={monCommerce.textColor}
                         // Bouton 1 (principal)
-                        boutonText1={""}
-                        boutonIcon1={(monCommerce.liens && monCommerce.liens[0] && monCommerce.liens[0].url && !monCommerce.liens[0].url.includes("facebook")) ? ("affiliatetheme") : ("facebook-square")}
-                        boutonLienWWW1={(monCommerce.liens && monCommerce.liens[0] && monCommerce.liens[0].url) ? monCommerce.liens[0].url : null}
+                        boutonText1={"aaa"}
+                        boutonIcon1={(monCommerce.liens && monCommerce.liens[0] && monCommerce.liens[0].url 
+                            && !monCommerce.liens[0].url.includes("facebook")) 
+                            ? ("affiliatetheme") 
+                            : ("facebook-square")}
+                        boutonLienWWW1={(monCommerce.liens && monCommerce.liens[0] 
+                            && monCommerce.liens[0].url) 
+                            ? monCommerce.liens[0].url 
+                            : null}
 
                         // Bouton 2 (secondaire)
-                        boutonText2={""}
-                        boutonIcon2={(monCommerce.liens && monCommerce.liens[1] && monCommerce.liens[1].url && !monCommerce.liens[1].url.includes("facebook")) ? ("affiliatetheme") : ("facebook-square")}
-                        boutonLienWWW2={(monCommerce.liens && monCommerce.liens[1] && monCommerce.liens[1].url) ? (monCommerce.liens[1].url) : null}>
+                        boutonText2={"bbb"}
+                        boutonIcon2={(monCommerce.liens && monCommerce.liens[1] 
+                            && monCommerce.liens[1].url && !monCommerce.liens[1].url.includes("facebook")) 
+                            ? ("affiliatetheme") 
+                            : ("facebook-square")}
+                        boutonLienWWW2={(monCommerce.liens && monCommerce.liens[1] 
+                        && monCommerce.liens[1].url) ? (monCommerce.liens[1].url) : null}>
 
                         {monCommerce.slogan ? monCommerce.slogan : null} {/*Je suis le children*/}
                     </Carte4Col>
@@ -165,7 +180,7 @@ export function CarteBoutonListeCommerces(props) {
 CarteBoutonListeCommerces.propTypes = {
     commerces: PropTypes.arrayOf(PropTypes.shape({
         nom: PropTypes.string.isRequired,
-        isComptoire: PropTypes.bool.isRequired,
+        isComptoir: PropTypes.bool.isRequired,
         logo: PropTypes.string.isRequired,
         bgImage: PropTypes.string.isRequired,
         textColor: color.isRequired,

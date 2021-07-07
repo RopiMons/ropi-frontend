@@ -48,7 +48,7 @@ export default function CMSPage(props){
         <>
             {props.page.paragraphes.map((paragraphe,key)=>{
                 return(
-                    <Paragraphe key={key} titre={paragraphe.titre}>
+                    <Paragraphe key={key} titre={paragraphe.titre} anchor={paragraphe.id}>
                         {paragraphe.text}
                     </Paragraphe>
                 )
