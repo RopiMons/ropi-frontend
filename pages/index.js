@@ -7,7 +7,7 @@ import Carte2Col from "../components/carte2Col";
 import {CarteBoutonAccueil} from "../components/carte4Col";
 
 
-export default function Index() {
+export default function Index(props) {
     const ActionIconArray = ["university", "store", "user-circle", "users"];
     const ActionLogoImageArray = ["", "", "", ""];
     const ActionTitleArray = ['Obtenir des Ropi', 'Dépenser ses Ropi', 'Devenir partenaire', 'Devenir bénévole'];
@@ -21,9 +21,9 @@ export default function Index() {
     const ActionImageArray = ["", "", "", "", ""];
     // boutons liens à cliquer
     const ActionTextColorArray = ["black", "black", "black", "black"];
-    const ActionTextArray1 = ["Ropi banking", "Rechercher", "Adhérer", "Aider"];
+    const ActionTextArray1 = ["Ropi banking", "Commerçant.e.s", "Adhérer", "Aider"];
     const ActionIconArray1 = ["facebook-square", "", "", ""];
-    const ActionButtonLienWWWArray1 = ["internal_link", "http://www.google.be", "www.google.be", "www.google.be"];
+    const ActionButtonLienWWWArray1 = ["commercants", "commercants", "www.google.be", "www.google.be"];
     //const ActionTextArray2 = ["", "", "", ""];
     //const ActionButtonLienWWWArray2 = [ "", "", "", ""];
 
@@ -37,6 +37,22 @@ export default function Index() {
 
     return (
         <>
+            <Container className="py-xl-5" id="passez-action">
+            <h2 className="text-center my-3">Pourquoi utiliser une monnaie locale comme le Ropi? </h2>
+            <h4 className="text-center" style={{lineHeight: "200%"}}> En adoptant le Ropi comme mode payement </h4>
+            <h5 className="" style={{lineHeight: "200%", marginLeft: "0px"}}>
+                <br></br>
+                <i class="fas fa-check-square"> </i> Vous favorisez les circuits courts dans la région. <br></br>
+                <i class="fas fa-check-square"> </i> Vous enrichissez la région. <br></br>
+                <i class="fas fa-check-square"> </i> Vous évitez les frais de lecteur de cartes bancaires .<br></br>
+                <i class="fas fa-check-square"> </i> Vous êtes certain après votre achat que votre argent continuera sa route dans la région. <br></br>
+                <i class="fas fa-check-square"> </i> Vous financez des projets éthiques en dédoublant votre argent (la garantie en euro est placé dans une banque éthique).<br></br>
+                <i class="fas fa-check-square"> </i> Vous votez pour revoir demain votre producteur / commerçant et indirectement leurs partenaires.  <br></br>
+                <i class="fas fa-check-square"> </i> Vous donnez un sens à l'argent pour un avenir durable. <br></br>
+                <i class="fas fa-check-square"> </i> Vous participez à la protection de l'environnement grâce au circuits courts. <br></br>
+            </h5>
+            </Container>
+
             {/* Passer à l'action*/}
             <Container className="py-xl-5" id="passez-action">
                 <h2 className="text-center my-3">Le Ropi en pratique</h2>
@@ -109,9 +125,33 @@ export default function Index() {
                         </p>
                     </>}>
             </Carte2Col>
-            <BlogRopi/>
+            <BlogRopi messageId={props.messageId} />
         </>
     )
 
 
+}
+
+export async function getStaticProps(context){
+
+    /* Obtain the page id of the Ropi facebook page and the last message id */
+
+    let messageId = null;   // the facebook  id of the latest published message 
+    
+        await fetch('https://graph.facebook.com/v9.0/'+process.env.FB_PAGEID+'/feed?access_token='+process.env.FB_SECRET).then(
+         async (result) => {
+            await result.json().then(json => {
+
+                 /* usefull regex generation tool https://regex101.com/ 
+                 In the returned json string, the "id" = idPage_idPostedMessage
+                 So we extract the 2nd number after the underscore (=idPostedMessage)
+                  */
+                messageId = json.data[0].id.replace(/(\d*)_(\d*)/gm, `$2`);
+            })
+        
+        }   
+        );
+    return {
+        props: {messageId : messageId},// will be passed to the page component as props
+      }
 }

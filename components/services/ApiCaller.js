@@ -5,13 +5,13 @@ const prod = process.env.NODE_ENV === 'production';
 
 const BASE_API = prod ? 'https://api.ropi.be/' : 'https://php-fpm-ropi-api:8000/api';
 
-
 const COMMERCES = '/commerces';
 const PAGE = '/page_statiques/{slug}';
 const MENU = '/menu';
+const ARTICLES = '/articles';
 
 const httpsAgent = new https.Agent({
-    rejectUnauthorized: prod,
+    rejectUnauthorized: prod
 });
 
 export default class ApiCaller {
@@ -20,12 +20,21 @@ export default class ApiCaller {
         return this.getJSON(COMMERCES);
     }
 
-    static async getPage(slug){
-        return this.getJSON(PAGE.replace("{slug}",slug));
+    static async getPointsDepot() {
+        return this.getJSON(COMMERCES + "?isComptoir=true");
     }
 
-    static async getMenu(){
+
+    static async getPage(slug) {
+        return this.getJSON(PAGE.replace("{slug}", slug));
+    }
+
+    static async getMenu() {
         return this.getJSON(MENU);
+    }
+
+    static async getArticles() {
+        return this.getJSON(ARTICLES)
     }
 
     static getRequestOptions(method = 'get', token = null) {
@@ -35,7 +44,7 @@ export default class ApiCaller {
             agent: httpsAgent
         }
 
-        if(token){
+        if (token) {
             request.headers = {...request.headers, ...{Authorization: "Bearer " + token}}
         }
 

@@ -12,65 +12,22 @@
   }
 }
 
-.banner {
-  margin-top: 40px;
-  border-radius: 20px;
-  background: linear-gradient(to bottom, #ffffff 0%, #ecf5f4 100%);
-}
 
-.bannerRow {
-  border-radius: 20px;
-  border: 1px;
-}
 
-.logo {
-  max-width: 150px;
-  padding-top: 10px;
-}
-
-.citationCounters {
-  padding: 20px;
-}
-
-.counterHeader {
-  font-size: 10px;
-  text-align: center;
-}
-
-.counters {
-  padding-top: 20px;
-}
-
-.counterBody {
-  text-align: center;
-}
-
-.tableDark {
-  background-color: rgba(64,70,84,0);
-  border-radius: 20px;
-  font-family: monospace;
-  color: #5a5757;
-}
-
-.eventail {
-  max-width: 230px;
-}
 
 .menu {
-  background-color: #ecf5f4;
-  margin-top: 50px;
-  border-radius: 20px;
-  border-style: inset;
+  background-color: rgba(255, 255, 255, 0.5);
+  /* margin-top: 5px; */
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  /* border-style: inset; */
 }
 
 .navItem {
   padding-left: 15px;
 }
 
-.subtitle {
-  color: #8d97ad;
-  line-height: 24px;
-}
+
 
 .footer {
   background-color: #292c2f;

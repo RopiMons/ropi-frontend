@@ -1,14 +1,22 @@
 .paragrapheTitle {
-    background: linear-gradient(to bottom,#ffffff 0%, #eeedfb 40%);
+    color: #000000a7;
+    background-color: rgba(255, 255, 255, .5);
     padding: 1rem;
-    color: #737373;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 50px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .paragrapheContent {
-    color: #525252;
-    background: #eeedfb;
+    color: #6f6f6f;
+    background-color: rgba(255, 255, 255, .6);
     padding-left: 15px;
     padding-right: 15px;
+    margin-left: 0px;
+    margin-right: 0px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
