@@ -3,15 +3,15 @@ import https from "https";
 
 const prod = process.env.NODE_ENV === 'production';
 
+const BASE_API = prod ? 'https://api.ropi.be/' : 'https://php-fpm-ropi-api:8000/api';
 
-const BASE_API = prod ? 'https://api.ropi.be/' : 'https://localhost:8000/api';
 
 const COMMERCES = '/commerces';
 const PAGE = '/page_statiques/{slug}';
 const MENU = '/menu';
 
 const httpsAgent = new https.Agent({
-    rejectUnauthorized: prod
+    rejectUnauthorized: prod,
 });
 
 export default class ApiCaller {
