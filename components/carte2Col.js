@@ -38,6 +38,8 @@ export default function Carte2Col(props) {
 
 
     return (
+
+
         <Container id="core" style={narrow}>
             <Row className="d-flex">
                 <Col className="col-12 col-md-12 col-lg-4">
@@ -54,3 +56,4 @@ export default function Carte2Col(props) {
         </Container>
     )
 }
+

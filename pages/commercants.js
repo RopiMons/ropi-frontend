@@ -7,7 +7,7 @@ import Error from "next/error";
 import dynamic from "next/dynamic";
 
 
-const mapDivStyle={
+const mapDivStyle = {
     height: "100 px",
     background: "#56854c",
     margin: "10px",
@@ -111,7 +111,7 @@ const doFilter = (setCommerceFn, commerces, setFilters, filters, evt) => {
         // filtrer sur la description libre
         // Le nom des field est inclu dans la recherche, donc il va enfait trouver 'trop',
         // donc pas idéal mais a le mérite d'être simple à coder ;-)
-       
+
         var addCommerceDescription = false;
         var objects = JSON.stringify(commerce).toUpperCase();
         if (objects.indexOf(filters.description.toUpperCase()) !== -1) {
@@ -169,22 +169,22 @@ export default function Commercants({status, commerces}) {
             ssr: false // This line is important. It's what prevents server-side render
         }), []);
 
-        
 
     return (
         <>
-           {/*  <div className="container py-xl-5" id="passez-action">
+            {/*  <div className="container py-xl-5" id="passez-action">
                 <h2 className="text-center my-3">Les prestataires qui acceptent le Ropi</h2>
                 <h4 className="text-center subtitle font-weight-normal">Commerçants, prestataires et associations </h4>
             </div> */}
 
-            <Carte2Col 
+            <Carte2Col
                 carteGauche={
                     <>
-                    <br></br>
-                        <h2>Les prestataires qui acceptent le Ropi</h2>                
-                        <h5>Cliquez sur la carte (popups) et aidez-vous des filtres ci-dessous pour rechercher un commerce !</h5>
-                       
+                        <br></br>
+                        <h2>Les prestataires qui acceptent le Ropi</h2>
+                        <h5>Cliquez sur la carte (popups) et aidez-vous des filtres ci-dessous pour rechercher un
+                            commerce !</h5>
+
                     </>
                 }
 
@@ -197,7 +197,8 @@ export default function Commercants({status, commerces}) {
                                 </div>
                             </Col>
                         </Row>
-                        <br/><small><a href="https://www.openstreetmap.org/#map=12/50.4511/3.9111">Afficher une carte plus grande</a></small>
+                        <br/><small><a href="https://www.openstreetmap.org/#map=12/50.4511/3.9111">Afficher une carte
+                        plus grande</a></small>
 
                     </>
                 }
@@ -208,97 +209,99 @@ export default function Commercants({status, commerces}) {
             ***************************************/}
             <Jumbotron className=" " id="valeurs" style={narrowJumbo}>
                 <Row className="d-flex justify-content-start">
-                                                
-                <Col className="col-sm-6 col-md-4 col-lg-3">
-                   
-                    <table>
-                    <tr>
-                    <label for="cp"> Codes postaux</label>
-                    </tr>
-                    <tr>
-                    <select        
-                        name="cp"                
-                        multiple={"multiple"}
-                        size={4}
-                        id="codePostal"
-                        onChange={(evt) => {doFilter(setCommerces, commerces, setFilters, filters, evt)}}>
-                                <option value="tous" selected>Tous</option>
-                                <option value="7020">7020 NIMY</option>
-                                <option value="7000">7000 Mons</option>
-                                <option value="7012">7012 Jemappes</option>
-                                <option value="7021">7021 Havré</option>
-                                <option value="7011">7011 Ghlin</option>
-                                <option value="7022">7022 Hyon</option>
-                                <option value="7034">7034 Mons</option>
-                                <option value="7050">7050 Jurbise / Soignies</option>
-                    </select>           
-                    </tr>
-                    </table>            
-                  
-                </Col>
-            
-                <Col className="col-sm-6 col-md-4 col-lg-3 ">
-                   
-                   <table>
-                       <tr>
-                    <label for="tc"> Types de commerce </label>
-                    </tr>
-                    <tr>
-                            <select 
-                            name ="tc"
-                            multiple size="4" id="typeActivite"
-                                    onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}>
-                                <option value="tous" selected>Tous</option>
-                                <option value="1">Alimentation</option>
-                                <option value="2">Habitat</option>
-                                <option value="3">Santé et bien être</option>
-                                <option value="4">Enseignement et culture</option>
-                                <option value="5">Soin à la nature et à la terre</option>
-                                <option value="6">Outils et technologies</option>
-                                <option value="7">Finance et économie</option>
-                                <option value="8">Foncier et gouvernance</option>
-                            </select>
-                            </tr>   
-                        </table>
-                </Col>     
 
-                <Col className="col-sm-12 col-md-12 col-lg-3"> 
-                <table>
-                <tr>&nbsp;</tr>
-                <tr>
-                            
-                            <label> Recherche libre &nbsp; </label>    
-                            <input type="text" id="description" 
-                                onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}/>                    
-                                
+                    <Col className="col-sm-6 col-md-4 col-lg-3">
+
+                        <table>
+                            <tr>
+                                <label for="cp"> Codes postaux</label>
                             </tr>
-                    <tr>&nbsp;</tr>
-                    <tr>
-                            
-                            <label> Comptoirs de change ? &nbsp;</label>
-                            <input type="checkbox" id="isComptoir"
-                                       onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}/>                                                
-                                                               
-                            </tr>      
-                            </table>                                         
-                    </Col> 
-                        
+                            <tr>
+                                <select
+                                    name="cp"
+                                    multiple={"multiple"}
+                                    size={4}
+                                    id="codePostal"
+                                    onChange={(evt) => {
+                                        doFilter(setCommerces, commerces, setFilters, filters, evt)
+                                    }}>
+                                    <option value="tous" selected>Tous</option>
+                                    <option value="7020">7020 NIMY</option>
+                                    <option value="7000">7000 Mons</option>
+                                    <option value="7012">7012 Jemappes</option>
+                                    <option value="7021">7021 Havré</option>
+                                    <option value="7011">7011 Ghlin</option>
+                                    <option value="7022">7022 Hyon</option>
+                                    <option value="7034">7034 Mons</option>
+                                    <option value="7050">7050 Jurbise / Soignies</option>
+                                </select>
+                            </tr>
+                        </table>
 
-                 </Row>
-                 <Row >
-                     <Col >
+                    </Col>
+
+                    <Col className="col-sm-6 col-md-4 col-lg-3 ">
+
+                        <table>
+                            <tr>
+                                <label for="tc"> Types de commerce </label>
+                            </tr>
+                            <tr>
+                                <select
+                                    name="tc"
+                                    multiple size="4" id="typeActivite"
+                                    onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}>
+                                    <option value="tous" selected>Tous</option>
+                                    <option value="1">Alimentation</option>
+                                    <option value="2">Habitat</option>
+                                    <option value="3">Santé et bien être</option>
+                                    <option value="4">Enseignement et culture</option>
+                                    <option value="5">Soin à la nature et à la terre</option>
+                                    <option value="6">Outils et technologies</option>
+                                    <option value="7">Finance et économie</option>
+                                    <option value="8">Foncier et gouvernance</option>
+                                </select>
+                            </tr>
+                        </table>
+                    </Col>
+
+                    <Col className="col-sm-12 col-md-12 col-lg-3">
+                        <table>
+                            <tr>&nbsp;</tr>
+                            <tr>
+
+                                <label> Recherche libre &nbsp; </label>
+                                <input type="text" id="description"
+                                       onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}/>
+
+                            </tr>
+                            <tr>&nbsp;</tr>
+                            <tr>
+
+                                <label> Comptoirs de change ? &nbsp;</label>
+                                <input type="checkbox" id="isComptoir"
+                                       onChange={(evt) => doFilter(setCommerces, commerces, setFilters, filters, evt)}/>
+
+                            </tr>
+                        </table>
+                    </Col>
+
+
+                </Row>
+                <Row>
+                    <Col>
                         <h5>(Maintenez Ctrl appuyé pour choisir plusieurs options)</h5>
-                  </Col>
-                 </Row>
+                    </Col>
+                </Row>
             </Jumbotron>
 
             {/******  Affiche la liste des commerces et ajouter avant et après la liste une carte spéciale pour ajouter un commerce  ********/}
-            <Container  id="actions" style={narrowJumbo}>
-            <Row className="d-flex justify-content-start">
-                <AddCommerce/>
-                <CarteBoutonListeCommerces commerces={filteredCommerces}/>
-                <AddCommerce/>
-            </Row>
+            <Container id="actions" style={narrowJumbo}>
+                <Row className="d-flex justify-content-start">
+                    <AddCommerce/>
+                    <CarteBoutonListeCommerces commerces={filteredCommerces}/>
+                    <AddCommerce/>
+                </Row>
             </Container>
 
         </>
